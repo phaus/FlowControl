@@ -1,0 +1,14 @@
+#{extends 'main.html' /}
+<a href="@{BacktraceErrors.show(error.id)}">Back</a>
+<h2>View Backtrace</h2>
+<div class="entity">
+    <p>
+        ${error}
+    </p>
+</div>
+<p>
+    #{list items:entity.lines, as:'line'}
+    ${line.method} (${line.file}:${line.number})
+    <br />
+    #{/list}
+</p>

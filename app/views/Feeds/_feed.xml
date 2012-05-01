@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+#{if project}
+    <title>Notices for Project ${project.name}</title>
+#{/if}
+#{else}
+    <title>all Notices</title>
+#{/else}
+    <link type="text/html" href="@@{Application.index()}" rel="alternate"/>
+    <updated>${updated}</updated>
+    <author>
+        <name>FlowControl</name>
+    </author>
+    <id>urn:uuid:${uuid}</id>
+    #{list items:entities, as:'entity'}
+    <entry>
+        <title>${entity.project}: ${entity.error}</title>
+        <link type="text/html" href="@@{Notices.show(entity.id)}" rel="alternate"/>
+        <id>${entity.project}:notice-${entity.id}:${entity.created_at}</id>
+        <published>${entity.getPublished()}</published>
+        <updated>${entity.getUpdated()}</updated>
+        <summary type="html">
+        #{verbatim}
+        <![CDATA[
+        ${entity.error?.summarize().raw()}
+        ]]>
+        #{/verbatim}
+        </summary>
+    </entry>
+    #{/list}
+</feed>

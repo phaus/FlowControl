@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="label">Version</div>
+    <div class="field">
+        <input type="text" name="entity.version" value="${entity?.version}"/>
+    </div>
+    <span class="error">${errors.forKey('entity.version')}</span>
+</div>
+<div class="row">
+    <div class="label">Created_at</div>
+    <div class="field">
+        <input id="created_at" type="text" name="entity.created_at"
+               value="${entity?.created_at}"
+               size="10" />
+    </div>
+    <span class="error">${errors.forKey('entity.created_at')}</span>
+</div>
+<div class="row">
+    <div class="label">Notifier</div>
+    <div class="field">
+        <select name="entity.notifier.id">
+            <option value="">(None)</option>
+            %{ models.Notifier.all().fetch().sort{ it.toString() }.each() { }%
+            %{
+            selected = false;
+            if (entity?.notifier?.id == it.id) {
+            selected = true
+            }
+            }%
+            <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
+            %{ } }%
+        </select>
+    </div>
+    <span class="error">${errors.forKey('entity.notifier')}</span>
+</div>
+<div class="row">
+    <div class="label">Error</div>
+    <div class="field">
+        <select name="entity.error.id">
+            <option value="">(None)</option>
+            %{ models.Error.all().fetch().sort{ it.toString() }.each() { }%
+            %{
+            selected = false;
+            if (entity?.error?.id == it.id) {
+            selected = true
+            }
+            }%
+            <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
+            %{ } }%
+        </select>
+    </div>
+    <span class="error">${errors.forKey('entity.error')}</span>
+</div>
+<div class="row">
+    <div class="label">Environment</div>
+    <div class="field">
+        <select name="entity.environment.id">
+            <option value="">(None)</option>
+            %{ models.ServerEnvironment.all().fetch().sort{ it.toString() }.each() { }%
+            %{
+            selected = false;
+            if (entity?.environment?.id == it.id) {
+            selected = true
+            }
+            }%
+            <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
+            %{ } }%
+        </select>
+    </div>
+    <span class="error">${errors.forKey('entity.environment')}</span>
+</div>
+<div class="row">
+    <div class="label"></div>
+    <div class="field">
+        <input type="hidden" name="entity.id" value="${entity?.id}"/>
+    </div>
+    <span class="error">${errors.forKey('entity.id')}</span>
+</div>
+

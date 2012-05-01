@@ -1,0 +1,45 @@
+<div class="control-group">
+    <label class="control-label" for="entity.uuid">UID</label>
+    <div class="controls">
+        #{if !entity.id}
+        <input type="text" id="entity.uid" name="entity.uid" value="${entity?.uid}"/>
+        #{/if}
+        #{else}
+        <span class="input-xlarge">${entity?.uid}</span>
+        #{/else}
+        <p class="help-block">${errors.forKey('entity.uuid')}</p>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="entity.password">Password</label>
+    <div class="controls">
+        <input type="text" id="entity.password" name="entity.password" value=""/>
+        <p class="help-block">${errors.forKey('entity.password')}</p>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="entity.email">Email</label>
+    <div class="controls">
+        <input name="entity.email" value="${entity?.email}" type="text" class="input-xlarge" id="entity.email">
+        <p class="help-block">${errors.forKey('entity.email')}</p>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="entity.projects">Projects</label>
+    <div class="controls">
+        <select id="entity.projects" name="entity.projects.id" multiple>
+            %{ models.Project.all().fetch().sort{ it.toString() }.each() { }%
+            %{
+            selected = false;
+            entity?.projects.each() { f ->
+            if (f.id == it?.id)
+            selected = true;
+            }
+            }%
+            <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
+            %{ } }%
+        </select>
+        <p class="help-block">${errors.forKey('entity.projects')}</p>
+    </div>
+</div>
+<input type="hidden" name="entity.id" value="${entity?.id}"/>

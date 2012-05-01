@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+<div class="row">
+    <h1>Accounts</h1>
+    <table class="entity Project table">
+        <thead>
+            <tr>
+                <th class="actions"><!-- actions --></th>
+                <th>UID</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Projects</th>
+                <th class="narrow">Created</th>
+            </tr>
+        </thead>
+        <tbody>
+	#{list items:entities, as:'entity'}
+            <tr>
+                <td>
+                    <a class="btn" href="@{Accounts.show(entity.id)}"><i class="icon-eye-open"></i></a>
+                    <a class="btn" href="@{Accounts.edit(entity.id)}"><i class="icon-pencil"></i></a>
+                    <a class="btn" href="@{Accounts.delete(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?')) return false;"><i class="icon-trash"></i></a>
+                </td>
+                <td>${entity.uid}</td>
+                <td>${entity.email}</td>
+                <td>#{if entity.password} ******** #{/if}</td>
+                <td>
+                    <ul>
+            	#{list entity.projects, as:'project'}
+                        <li> <a href="@{Projects.show(project.id)}">${project.name}</a></li>
+                        #{/list}
+                    </ul>
+                </td>
+                <td>${entity.created_at}</td>
+            </tr>
+	#{/list}
+        </tbody>
+    </table>
+    <a class="btn btn-primary"  href="@{Accounts.create}">Create</a>
+</div>

@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="label">Project Root</div>
+    <div class="field">
+        <input type="text" name="entity.projectRoot" value="${entity?.projectRoot}"/>
+    </div>
+    <span class="error">${errors.forKey('entity.projectRoot')}</span>
+</div>
+<div class="row">
+    <div class="label">Environment Name</div>
+    <div class="field">
+        <input type="text" name="entity.environmentName" value="${entity?.environmentName}"/>
+    </div>
+    <span class="error">${errors.forKey('entity.environmentName')}</span>
+</div>
+<div class="row">
+    <div class="label">App Version</div>
+    <div class="field">
+        <input type="text" name="entity.appVersion" value="${entity?.appVersion}"/>
+    </div>
+    <span class="error">${errors.forKey('entity.appVersion')}</span>
+</div>
+<div class="row">
+    <div class="label">Hostname</div>
+    <div class="field">
+        <input type="text" name="entity.hostname" value="${entity?.hostname}"/>
+    </div>
+    <span class="error">${errors.forKey('entity.hostname')}</span>
+</div>
+<div class="row">
+    <div class="label"></div>
+    <div class="field">
+        <input type="hidden" name="entity.id" value="${entity?.id}"/>
+    </div>
+    <span class="error">${errors.forKey('entity.id')}</span>
+</div>
+

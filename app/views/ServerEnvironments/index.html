@@ -1,0 +1,31 @@
+#{extends 'main.html' /}
+<div class="row">
+    <h1>Your Environments</h1>
+    <table class="entity ServerEnvironment table">
+        <thead>
+            <tr>
+                <th class="actions"><!-- actions --></th>
+                <th>Project Root</th>
+                <th>Environment Name</th>
+                <th>App Version</th>
+                <th>Hostname</th>
+            </tr>
+        </thead>
+        <tbody>
+	#{list items:entities, as:'entity'}
+            <tr>
+                <td>
+                    <!--                <a href="@{ServerEnvironments.show(entity.id)}">Show</a><br />
+                                    <a href="@{ServerEnvironments.edit(entity.id)}">Edit</a><br />
+                                    <a href="@{ServerEnvironments.delete(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?')) return false;">Delete</a>-->
+                </td>
+                <td>${entity.projectRoot}</td>
+                <td>${entity.environmentName}</td>
+                <td>${entity.appVersion}</td>
+                <td>${entity.hostname}</td>
+            </tr>
+	#{/list}
+        </tbody>
+    </table>
+</div>
+

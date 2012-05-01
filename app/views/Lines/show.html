@@ -1,0 +1,54 @@
+#{extends 'main.html' /}
+<h2>View Line</h2>
+<div class="entity">
+	<div class="row">
+		<span class="elem">
+			method:
+		</span>
+		<span class="value">
+      ${entity.method}
+		</span>
+	</div>
+	<div class="row">
+		<span class="elem">
+			file:
+		</span>
+		<span class="value">
+      ${entity.file}
+		</span>
+	</div>
+	<div class="row">
+		<span class="elem">
+			number:
+		</span>
+		<span class="value">
+      ${entity.number}
+		</span>
+	</div>
+	<div class="row">
+		<span class="elem">
+			hash:
+		</span>
+		<span class="value">
+      ${entity.hash}
+		</span>
+	</div>
+	<div class="row">
+		<span class="elem">
+			backtrace:
+		</span>
+		<span class="value">
+      ${entity.backtrace}
+		</span>
+	</div>
+	<div class="row">
+		<span class="elem">
+			id:
+		</span>
+		<span class="value">
+      ${entity.id}
+		</span>
+	</div>
+</div>
+<a href="@{Lines.index}">Back</a>
+

@@ -1,0 +1,10 @@
+#{extends 'main.html' /}
+<h2>Edit Line</h2>
+<div class="entity">
+#{form @Lines.update(), id:'createForm'}
+	#{include 'Lines/_form.html' /}
+	<input type="submit" name="submit" value="Save" />
+#{/form}
+</div>
+<a href="@{Lines.index}">Cancel</a>
+

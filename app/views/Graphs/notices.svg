@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- width:${width} heigh:${height} gap:${gap} c:${c}  -->
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+     version="1.1" baseProfile="full"
+     width="${width}px" height="${height}px">
+
+    <!-- unresolved Entries -->
+    <!-- ${c = init} -->
+    #{list items:openEntries.keySet(), as:'key'}
+    <!-- ${c = c + xpart} -->
+    #{if openEntries.get(key) > 0}
+    <rect title="${openEntries.get(key)}" x="${c+gap}" y="${height - openEntries.get(key)*ypart-15}" width="${xpart*0.6}" height="${openEntries.get(key)*ypart-10}" fill="#F2DEDE" stroke="#000" id="ur-${key}"  />
+    <text x="${c+gap}" y="14" style="font-size:16px;fill: #000">
+    ${openEntries.get(key)}
+    </text>
+    #{/if}
+    <text x="${c+gap}" y="${height - 5}" style="font-size:16px">
+    ${key}
+    </text>
+    #{/list}
+    <!-- resolved Entries -->
+    <!-- ${c = init} -->
+    #{list items:resolvedEntries.keySet(), as:'key'}
+    <!-- ${c = c + xpart} -->
+    #{if resolvedEntries.get(key) > 0}
+    <rect title="${resolvedEntries.get(key)}" x="${c+gap}" y="${height - resolvedEntries.get(key)*ypart-15}" width="${xpart*0.6}" height="${resolvedEntries.get(key)*ypart-10}" fill="#DFF0D8" stroke="#000" id="r-${key}"  />
+    <text x="${c+gap}" y="30" style="font-size:16px;fill: #000">
+    ${resolvedEntries.get(key)}
+    </text>
+    #{/if}
+    #{/list}
+    <rect title="resolved" x="2" y="2" width="75" height="20" fill="#F2DEDE" stroke="#000" id="unresolved" />
+    <text x="5" y="15" style="font-size:14px;fill: #000">
+    unresolved
+    </text>
+    <rect title="unresolved" x="2" y="22" width="75" height="20" fill="#DFF0D8" stroke="#000" id="resolved" />
+    <text x="5" y="35" style="font-size:14px;fill: #000">
+    resolved
+    </text>
+</svg>

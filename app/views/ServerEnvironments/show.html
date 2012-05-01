@@ -1,0 +1,38 @@
+#{extends 'main.html' /}
+<h2>View ServerEnvironment</h2>
+<div class="entity">
+    <div class="row">
+        <span class="elem">
+			projectRoot:
+        </span>
+        <span class="value">
+            ${entity.projectRoot}
+        </span>
+    </div>
+    <div class="row">
+        <span class="elem">
+			environmentName:
+        </span>
+        <span class="value">
+            ${entity.environmentName}
+        </span>
+    </div>
+    <div class="row">
+        <span class="elem">
+			appVersion:
+        </span>
+        <span class="value">
+            ${entity.appVersion}
+        </span>
+    </div>
+    <div class="row">
+        <span class="elem">
+			hostname:
+        </span>
+        <span class="value">
+            ${entity.hostname}
+        </span>
+    </div>
+</div>
+<a href="@{ServerEnvironments.index}">Back</a>
+

@@ -1,0 +1,29 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       Application.index
+GET     /form                                   Application.form
+POST    /notifier_api/v2/notices                Application.notice
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+GET     /assets/                                staticDir:public
+
+GET     /graphs/notices.svg                     Graphs.notices(format:'svg')
+GET     /feeds/index.xml                        Feeds.index(format:'xml')
+GET     /feeds/show/{apiKey}.xml                Feeds.show(format:'xml')
+
+# TODO add correct REST Method here
+*       /projects/{id}/key/remove               Projects.remApiKey
+*       /projects/{id}/key/add                  Projects.addApiKey
+
+GET     /project/{projectId}/errors/index       BacktraceErrors.projectIndex
+*       /errors/{action}                        BacktraceErrors.{action}
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

@@ -1,0 +1,24 @@
+#{extends 'main.html' /}
+<div class="row">
+    <h1>Your Notifiers</h1>
+    <table class="entity Notifier table">
+        <thead>
+            <tr>
+                <th class="actions"></th>
+                <th>Name</th>
+                <th>Version</th>
+                <th>Url</th>
+            </tr>
+        </thead>
+        <tbody>
+	#{list items:entities, as:'entity'}
+            <tr>
+                <td></td>
+                <td>${entity.name}</td>
+                <td>${entity.version}</td>
+                <td><a href="${entity.url}" target="_new">${entity.url}</a></td>
+            </tr>
+	#{/list}
+        </tbody>
+    </table>
+</div>

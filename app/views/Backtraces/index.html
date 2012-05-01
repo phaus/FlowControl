@@ -1,0 +1,24 @@
+#{extends 'main.html' /}
+<h2>Backtraces</h2>
+<table class="entity Backtrace">
+    <thead>
+        <tr>
+            <th><!-- actions --></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+	#{list items:entities, as:'entity'}
+        <tr>
+            <td>
+                <a href="@{Backtraces.show(entity.id)}">Show</a><br />
+                <a href="@{Backtraces.edit(entity.id)}">Edit</a><br />
+                <a href="@{Backtraces.delete(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?')) return false;">Delete</a>
+            </td>
+            <td>${entity}</td>
+        </tr>
+	#{/list}
+    </tbody>
+</table>
+<a href="@{Backtraces.create}">Create</a>
+

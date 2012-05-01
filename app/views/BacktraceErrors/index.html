@@ -1,0 +1,59 @@
+#{extends 'main.html' /}
+<div class="row">
+    <div class="span10">
+        <h1>Your Errors</h1>
+        <table class="entity Error table">
+            <thead>
+                <tr>
+                    <th class="actions"><!-- actions --></th>
+                    <th>Class</th>
+                    <th>Message</th>
+                    <th>Backtrace</th>
+                </tr>
+            </thead>
+            <tbody>
+	#{list items:entities, as:'entity'}
+                <tr>
+                    <td>
+                        <a class="btn" href="@{BacktraceErrors.show(entity.id)}"><i class="icon-eye-open"></i></a>
+                        <a class="btn" href="@{BacktraceErrors.delete(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?')) return false;"><i class="icon-trash"></i></a>
+                    </td>
+                    <td>${entity.clazz}</td>
+                    <td>${entity.message}</td>
+                    #{if traceId && entity.backtrace.id == traceId}
+                    <td><a href="@{BacktraceErrors.index()}">hide Backtrace</a></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="3">
+                        ${trace}
+                    </td>
+                    #{/if}
+                    #{else}
+                    <td><a href="@{BacktraceErrors.index().add('trace_id', entity.backtrace.id)}">show Backtrace</a></td>
+                    #{/else}
+                </tr>
+	#{/list}
+            </tbody>
+        </table>
+    </div>
+    <div class="span2">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+                <li class="nav-header">Errors</li>
+                <li><a href="@{BacktraceErrors.index()}">All</a></li>
+                <li class="nav-header">By Project</li>
+                <li>
+                    <ul>
+                        #{list items:projects, as:'p'}
+                        <li>
+                            <a href="@{BacktraceErrors.projectIndex(p.id)}">${p.name}</a>
+                        </li>
+                        #{/list}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

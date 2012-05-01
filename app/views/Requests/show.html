@@ -1,0 +1,62 @@
+#{extends 'main.html' /}
+<h2>View Request</h2>
+<div class="entity">
+	<div class="row">
+		<span class="elem">
+			url:
+		</span>
+		<span class="value">
+      ${entity.url}
+		</span>
+	</div>
+	<div class="row">
+		<span class="elem">
+			component:
+		</span>
+		<span class="value">
+      ${entity.component}
+		</span>
+	</div>
+	<div class="row">
+		<span class="elem">
+			action:
+		</span>
+		<span class="value">
+      ${entity.action}
+		</span>
+	</div>
+	<div class="row">
+		<span class="elem">
+			params:
+		</span>
+		<span class="value">
+      ${entity.params}
+		</span>
+	</div>
+	<div class="row">
+		<span class="elem">
+			session:
+		</span>
+		<span class="value">
+      ${entity.session}
+		</span>
+	</div>
+	<div class="row">
+		<span class="elem">
+			cgiData:
+		</span>
+		<span class="value">
+      ${entity.cgiData}
+		</span>
+	</div>
+	<div class="row">
+		<span class="elem">
+			id:
+		</span>
+		<span class="value">
+      ${entity.id}
+		</span>
+	</div>
+</div>
+<a href="@{Requests.index}">Back</a>
+

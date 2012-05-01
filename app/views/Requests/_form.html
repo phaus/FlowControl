@@ -1,0 +1,83 @@
+ <div class="row">
+  <div class="label">Url</div>
+  <div class="field">
+      <input type="text" name="entity.url" value="${entity?.url}"/>
+  </div>
+  <span class="error">${errors.forKey('entity.url')}</span>
+</div>
+ <div class="row">
+  <div class="label">Component</div>
+  <div class="field">
+      <input type="text" name="entity.component" value="${entity?.component}"/>
+  </div>
+  <span class="error">${errors.forKey('entity.component')}</span>
+</div>
+ <div class="row">
+  <div class="label">Action</div>
+  <div class="field">
+      <input type="text" name="entity.action" value="${entity?.action}"/>
+  </div>
+  <span class="error">${errors.forKey('entity.action')}</span>
+</div>
+ <div class="row">
+  <div class="label">Params</div>
+  <div class="field">
+        <select name="entity.params.id">
+                      <option value="">(None)</option>              
+        %{ models.VarList.all().fetch().sort{ it.toString() }.each() { }%
+          %{
+            selected = false;
+            if (entity?.params?.id == it.id) {
+              selected = true
+            }
+          }%
+          <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
+        %{ } }%
+        </select>
+  </div>
+  <span class="error">${errors.forKey('entity.params')}</span>
+</div>
+ <div class="row">
+  <div class="label">Session</div>
+  <div class="field">
+        <select name="entity.session.id">
+                      <option value="">(None)</option>              
+        %{ models.VarList.all().fetch().sort{ it.toString() }.each() { }%
+          %{
+            selected = false;
+            if (entity?.session?.id == it.id) {
+              selected = true
+            }
+          }%
+          <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
+        %{ } }%
+        </select>
+  </div>
+  <span class="error">${errors.forKey('entity.session')}</span>
+</div>
+ <div class="row">
+  <div class="label">Cgi Data</div>
+  <div class="field">
+        <select name="entity.cgiData.id">
+                      <option value="">(None)</option>              
+        %{ models.VarList.all().fetch().sort{ it.toString() }.each() { }%
+          %{
+            selected = false;
+            if (entity?.cgiData?.id == it.id) {
+              selected = true
+            }
+          }%
+          <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
+        %{ } }%
+        </select>
+  </div>
+  <span class="error">${errors.forKey('entity.cgiData')}</span>
+</div>
+ <div class="row">
+  <div class="label"></div>
+  <div class="field">
+      <input type="hidden" name="entity.id" value="${entity?.id}"/>
+  </div>
+  <span class="error">${errors.forKey('entity.id')}</span>
+</div>
+

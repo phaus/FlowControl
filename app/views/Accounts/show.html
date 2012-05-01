@@ -1,0 +1,38 @@
+#{extends 'main.html' /}
+<h2>View Account</h2>
+<div class="entity">
+    <div class="row">
+        <span class="elem">
+			email:
+        </span>
+        <span class="value">
+            ${entity.email}
+        </span>
+    </div>
+    <div class="row">
+        <span class="elem">
+			password:
+        </span>
+        <span class="value">
+            ${entity.password}
+        </span>
+    </div>
+    <div class="row">
+        <span class="elem">
+			projects:
+        </span>
+        <span class="value">
+            ${entity.projects}
+        </span>
+    </div>
+    <div class="row">
+        <span class="elem">
+			created_at:
+        </span>
+        <span class="value">
+            ${entity.created_at}
+        </span>
+    </div>
+</div>
+<a href="@{Accounts.index}">Back</a>
+

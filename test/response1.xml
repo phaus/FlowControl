@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<notice version="2.0.0">
+    <api-key/>
+    <notifier>
+        <name>hoptoad</name>
+        <version>1.7-socrata-SNAPSHOT</version>
+        <url>http://hoptoad.googlecode.com</url>
+    </notifier>
+    <error>
+        <class>java.lang.Throwable</class>
+        <message>[class java.lang.Throwable]</message>
+        <backtrace>
+            <line file="StringTemplateView.java" method="com.trailhunger.ui.view.StringTemplateView.renderMergedOutputModel" number="55"/>
+            <line file="AbstractView.java" method="org.springframework.web.servlet.view.AbstractView.render" number="250"/>
+            <line file="null-1)" method="java.lang.Thread.run" number="-1"/>
+        </backtrace>
+    </error>
+    <server-environment>
+        <project-root>null</project-root>
+        <environment-name>env</environment-name>
+    </server-environment>
+</notice>

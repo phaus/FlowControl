@@ -1,0 +1,10 @@
+#{extends 'main.html' /}
+<h2>Create Error</h2>
+<div class="entity">
+#{form @BacktraceErrors.save(), id:'createForm'}
+	#{include 'Errors/_form.html' /}
+	<input type="submit" name="submit" value="Save" />
+#{/form}
+</div>
+<a href="@{BacktraceErrors.index}">Cancel</a>
+

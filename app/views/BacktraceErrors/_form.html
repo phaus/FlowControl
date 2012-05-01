@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="label">Clazz</div>
+    <div class="field">
+        <input type="text" name="entity.clazz" value="${entity?.clazz}"/>
+    </div>
+    <span class="error">${errors.forKey('entity.clazz')}</span>
+</div>
+<div class="row">
+    <div class="label">Message</div>
+    <div class="field">
+        <input type="text" name="entity.message" value="${entity?.message}"/>
+    </div>
+    <span class="error">${errors.forKey('entity.message')}</span>
+</div>
+<div class="row">
+    <div class="label">Backtrace</div>
+    <div class="field">
+        <select name="entity.backtrace.id">
+            <option value="">(None)</option>
+            %{ models.Backtrace.all().fetch().sort{ it.toString() }.each() { }%
+            %{
+            selected = false;
+            if (entity?.backtrace?.id == it.id) {
+            selected = true
+            }
+            }%
+            <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
+            %{ } }%
+        </select>
+    </div>
+    <span class="error">${errors.forKey('entity.backtrace')}</span>
+</div>
+<div class="row">
+    <div class="label"></div>
+    <div class="field">
+        <input type="hidden" name="entity.id" value="${entity?.id}"/>
+    </div>
+    <span class="error">${errors.forKey('entity.id')}</span>
+</div>
+

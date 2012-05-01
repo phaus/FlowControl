@@ -1,0 +1,7 @@
+#{extends 'main.html' /}
+#{set title:'upload Notice' /}
+<hr />
+<form action="@{Application.notice()}" method="POST">
+    <textarea cols="60" rows="15"  name="notice" id="notice"></textarea><br />
+    <input type="submit" value="Send as xml..." />
+</form>

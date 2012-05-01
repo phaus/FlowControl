@@ -1,0 +1,34 @@
+#{extends 'main.html' /}
+<h2>Requests</h2>
+<table class="entity Request">
+    <thead>
+        <tr>
+            <th><!-- actions --></th>
+            <th>Url</th>
+            <th>Component</th>
+            <th>Action</th>
+            <th>Params</th>
+            <th>Session</th>
+            <th>Cgi Data</th>
+        </tr>
+    </thead>
+    <tbody>
+	#{list items:entities, as:'entity'}
+        <tr>
+            <td>
+                <a href="@{Requests.show(entity.id)}">Show</a><br />
+                <a href="@{Requests.edit(entity.id)}">Edit</a><br />
+                <a href="@{Requests.delete(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?')) return false;">Delete</a>
+            </td>
+            <td>${entity.url}</td>
+            <td>${entity.component}</td>
+            <td>${entity.action}</td>
+            <td>${entity.params}</td>
+            <td>${entity.session}</td>
+            <td>${entity.cgiData}</td>
+        </tr>
+	#{/list}
+    </tbody>
+</table>
+<a href="@{Requests.create}">Create</a>
+

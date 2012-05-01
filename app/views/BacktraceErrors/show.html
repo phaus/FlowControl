@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+<h2>View Error <small>${entity.id}</small></h2>
+
+<h3>Class</h3>
+<p>${entity.clazz}</p>
+
+<h3>Message</h3>
+<p>${entity.message}</p>
+
+<h3>Backtrace</h3>
+<pre class="prettyprint lang-html linenums prettyprinted">
+${entity.backtrace}
+</pre>
+<br />
+
+<a class="btn btn-primary" href="@{Notices.index}">Back</a>
+

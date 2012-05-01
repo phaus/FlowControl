@@ -1,0 +1,16 @@
+#{extends 'main.html' /}
+<h2>Update this Project</h2>
+<div class="entity">
+    <form method="post" action="@{ Projects.update()}" class="form-horizontal">
+        <fieldset>
+            <legend>Project Settings</legend>
+        	#{include 'Projects/_form.html' /}
+            <div class="form-actions">
+                <input class="btn btn-primary" type="submit" name="submit" value="Save" />
+                <a class="btn" href="@{Projects.index}">Cancel</a>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+

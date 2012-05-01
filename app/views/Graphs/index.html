@@ -1,0 +1,11 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+<table>
+    #{list items:values.keySet(), as:'key'}
+    <tr>
+        <td>${key}</td>
+        <td>${values.get(key)}
+        </td>
+    </tr>
+    #{/list}
+</table>

@@ -1,0 +1,35 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+<div class="hero-unit">
+    <h1>Welcome to Flow-Control</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    </p>
+</div>
+<div class="row">
+    <div class="span4">
+        <h2>Projects</h2>
+        <ul class="nav nav-tabs nav-stacked">
+            #{list items:projects, as:'project'}
+            <li><a href="@{Notices.filter(project.id)}">${project.name}<span class="right badge #{if project.notices?.size() > 0}badge-important#{/if}">${project.notices?.size()}</span></a></li>
+            #{/list}
+        </ul>
+        <p>
+            <a class="btn" href="@{Projects.index()}">View details »</a>
+        </p>
+    </div>
+    <div class="span4">
+        <h2>Notices <small>in last 24h</small></h2>
+        <div class="nav thumbnail"><img alt="Graphs.notices" src="@{Graphs.notices()}.svg" /></div>
+        <p>
+            <a class="btn" href="@{Notices.index()}">View details »</a>
+        </p>
+    </div>
+    <div class="span4">
+        <h2>Errors</h2>
+        <p class="nav">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+        <p>
+            <a class="btn" href="@{BacktraceErrors.index()}">View details »</a>
+        </p>
+    </div>
+</div>

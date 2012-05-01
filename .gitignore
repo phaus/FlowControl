@@ -1,0 +1,10 @@
+**/.svn
+**/.DS_Store
+.svn
+.DS_Store
+db/*
+tmp/*
+logs/*
+test-result
+nbproject
+modules/*

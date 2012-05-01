@@ -1,0 +1,64 @@
+#{extends 'main.html' /}
+<div class="row">
+    <div class="span10">
+        <h1>Your#{if !"true".equals(resolved)} unresolved#{/if}#{else} resolved#{/else} Notices #{if project}<small>for Project ${project.name}</small>#{/if}</h1>
+        <table class="entity Notice table">
+            <thead>
+                <tr>
+                    <th class="actions"><!-- actions --></th>
+                    <th>Project</th>
+                    <th>Created</th>
+                    <th>Notifier</th>
+                    <th>Error</th>
+                </tr>
+            </thead>
+            <tbody>
+	#{list items:entities, as:'entity'}
+                <tr class="alert #{if entity.resolved}alert-success#{/if}#{else}alert-error#{/else}">
+                    <td>
+                        #{form @Notices.update(), id:'createForm'}
+                        <input type="hidden" name="entity.resolved" value="1"/> <input type="hidden" name="entity.id" value="${entity?.id}"/><button onclick="if (!confirm('Are you sure you want to resolved this Error?')) return false;" type="submit" class="btn btn-primary"><i class="icon-ok #{if entity.resolved}icon-white#{/if}"></i></button>
+                        <a class="btn" href="@{Notices.show(entity.id)}"><i class="icon-eye-open"></i></a>
+                        <a class="btn" href="@{Notices.delete(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?')) return false;"><i class="icon-trash"></i></a>
+                        #{/form}
+                    </td>
+                    <td><a href="@{Projects.show(entity.project.id)}">${entity.project}</a></td>
+                    <td>${entity.created_at}</td>
+                    <td>${entity.notifier}</td>
+                    <td>
+                        <a href="@{BacktraceErrors.show(entity.error?.id)}">${entity.error}</a>
+                    </td>
+                </tr>
+	#{/list}
+            </tbody>
+        </table>
+    </div>
+    <div class="span2">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+                <li class="nav-header">Notices</li>
+                <li>#{resolved_link title:'Overview', resolved:resolved /}</li>
+                <li class="nav-header">By Project</li>
+                <li>
+                    <ul>
+                        #{list items:projects, as:'project'}
+                        <li>
+                            #{resolved_link project_id:project.id, title:project.name, resolved:resolved /}
+                        </li>
+                        #{/list}
+                    </ul>
+                </li>
+                <li class="nav-header">Atom Feeds
+                    <ul>
+                        <li><a target="_new" href="@{Feeds.index()}.xml">All</a></li>
+                        #{list items:projects, as:'project'}
+                        <li>
+                            <a target="_new" href="@{Feeds.show()}/${project.apiKey}.xml">${project.name}</a>
+                        </li>
+                        #{/list}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
