@@ -1,38 +1,15 @@
 #{extends 'main.html' /}
-<h2>View Notifier</h2>
-<div class="entity">
-	<div class="row">
-		<span class="elem">
-			name:
-		</span>
-		<span class="value">
-      ${entity.name}
-		</span>
-	</div>
-	<div class="row">
-		<span class="elem">
-			version:
-		</span>
-		<span class="value">
-      ${entity.version}
-		</span>
-	</div>
-	<div class="row">
-		<span class="elem">
-			url:
-		</span>
-		<span class="value">
-      ${entity.url}
-		</span>
-	</div>
-	<div class="row">
-		<span class="elem">
-			id:
-		</span>
-		<span class="value">
-      ${entity.id}
-		</span>
-	</div>
+<div class="hero-unit">
+    <h2>Notifier <small>${entity.name}</small></h2>
+    <h3>Version</h3>
+    <p>
+        ${entity.version}
+    </p>
+    <h3>Url</h3>
+    <p>
+        <a target="_new" href="${entity.url}">${entity.url}</a>
+    </p>
+    <p>
+        <a class="btn btn-primary" href="@{Notifiers.index}">Back</a>
+    </p>
 </div>
-<a href="@{Notifiers.index}">Back</a>
-

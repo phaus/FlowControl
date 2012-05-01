@@ -14,6 +14,11 @@ GET     /favicon.ico                            404
 GET     /public/                                staticDir:public
 GET     /assets/                                staticDir:public
 
+GET     /notices/{id}/show                      Notices.show()
+GET     /projects/{id}/show                     Projects.show()
+GET     /accounts/{id}/show                     Accounts.show()
+
+
 GET     /graphs/notices.svg                     Graphs.notices(format:'svg')
 GET     /feeds/index.xml                        Feeds.index(format:'xml')
 GET     /feeds/show/{apiKey}.xml                Feeds.show(format:'xml')

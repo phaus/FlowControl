@@ -106,6 +106,23 @@ public class Account extends Model {
         return query.getResultList();
     }
 
+    public List<Notice> getNoticesForPeriodAndProject(int period, Project project, boolean resolved) {
+        String queryString = "SELECT n "
+                + "FROM Notice n "
+                + "INNER JOIN n.project p "
+                + "WHERE n.project = p "
+                + "AND n.created_at > :past ";
+        if (resolved) {
+            queryString += "AND n.resolved = 1 ";
+        } else {
+            queryString += "AND n.resolved = 0 ";
+        }
+        queryString += "AND p = :project "
+                + "ORDER BY n.created_at DESC";
+        Query query = JPA.em().createQuery(queryString).setParameter("past", getDateForPeriod(period)).setParameter("project", project);
+        return query.getResultList();
+    }
+
     public List<Notice> getNoticesForPeriod(int period, boolean resolved) {
         String queryString = "SELECT n "
                 + "FROM Notice n "

@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 <div class="row">
     <h1>Your Projects</h1>
-    <table class="entity Project table">
+    <table class="entity project table">
         <thead>
             <tr>
                 <th class="actions"><!-- actions --></th>
@@ -16,22 +16,32 @@
 	#{list items:entities, as:'entity'}
             <tr>
                 <td>
-                    <a class="btn" href="@{Projects.show(entity.id)}"><i class="icon-eye-open"></i></a>
-                    <a class="btn" href="@{Projects.edit(entity.id)}"><i class="icon-pencil"></i></a>
-                    <a class="btn" href="@{Projects.delete(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?')) return false;"><i class="icon-trash"class="icon-align-left"></i></a>
+                    <a class="btn" href="@{Projects.show(entity.id)}">
+                        <i class="icon-eye-open">show</i>
+                    </a>
+                    <a class="btn" href="@{Projects.edit(entity.id)}">
+                        <i class="icon-pencil">edit</i>
+                    </a>
+                    <a class="btn" href="@{Projects.delete(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?')) return false;">
+                        <i class="icon-trash"class="icon-align-left">delete</i>
+                    </a>
                 </td>
                 <td>${entity.name}</td>
                 <td>${entity.url}</td>
                 <td>${entity.created_at}</td>
                 <td>
                     #{if entity.apiKey}
-                    <a class="btn" href="@{Projects.removeApiKey(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?\n* all Noticfication for this key will be deleted,\n* all Projects will be disconnected!')) return false;"><i class="icon-minus"></i></a>
+                    <a class="btn" href="@{Projects.removeApiKey(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?\n* all Noticfication for this key will be deleted,\n* all Projects will be disconnected!')) return false;">
+                        <i class="icon-minus">remove</i>
+                    </a>
                 </td>
                 <td>
                     ${entity.apiKey}
                     #{/if}
                     #{else}
-                    <a class="btn" href="@{Projects.addApiKey(entity.id)}"><i class="icon-plus"></i></a>
+                    <a class="btn" href="@{Projects.addApiKey(entity.id)}">
+                        <i class="icon-plus">add</i>
+                    </a>
                 </td>
                 <td>
                     #{/else}

@@ -1,38 +1,14 @@
 #{extends 'main.html' /}
-<h2>View Account</h2>
-<div class="entity">
-    <div class="row">
-        <span class="elem">
-			email:
-        </span>
-        <span class="value">
-            ${entity.email}
-        </span>
-    </div>
-    <div class="row">
-        <span class="elem">
-			password:
-        </span>
-        <span class="value">
-            ${entity.password}
-        </span>
-    </div>
-    <div class="row">
-        <span class="elem">
-			projects:
-        </span>
-        <span class="value">
-            ${entity.projects}
-        </span>
-    </div>
-    <div class="row">
-        <span class="elem">
-			created_at:
-        </span>
-        <span class="value">
-            ${entity.created_at}
-        </span>
-    </div>
+<div class="hero-unit">
+    <h2>View Account <small>${entity.uid}</small></h2>
+    <h3>Email</h3>
+    <p>${entity.email}</p>
+    <h3>Created</h3>
+    <p>${entity.created_at}</p>
+    <h3>Projects</h3>
+    <p>
+        ${entity.projects}
+    </p>
+    <a class="btn btn-primary" href="@{Accounts.index}">Back</a>
 </div>
-<a href="@{Accounts.index}">Back</a>
 

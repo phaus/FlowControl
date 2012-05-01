@@ -71,7 +71,7 @@ public class GraphsHelper {
                 return calendar.get(Calendar.YEAR) - 2;
             case MONTH:
             case DAY:
-                return 1;
+                return 0;
             case HOUR:
             default:
                 return 0;

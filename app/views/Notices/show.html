@@ -1,32 +1,34 @@
 #{extends 'main.html' /}
+<div class="hero-unit">
+    <h2>Notice</h2>
 
-<h2>Notice</h2>
+    <h3>Created</h3>
+    <p>${entity.created_at}</p>
 
-<h3>Created</h3>
-<p>${entity.created_at}</p>
+    <h3>Api-Key</h3>
+    <p>${entity.apiKey}</p>
 
-<h3>Api-Key</h3>
-<p>${entity.apiKey}</p>
+    <h3>Environment</h3>
+    <p>${entity.environment}</p>
 
-<h3>Environment</h3>
-<p>${entity.environment}</p>
+    #{if entity.request}
+    <h3>Request</h3>
+    <p>${entity.request.summarize().raw()}</p>
+    #{/if}
 
-<h3>Request</h3>
-<p>${entity.request.summarize().raw()}</p>
+    <h3>Notifier</h3>
+    <p>${entity.notifier}</p>
 
-<h3>Notifier</h3>
-<p>${entity.notifier}</p>
-
-<h3>Error</h3>
-<p>${entity.error}
-<pre class="prettyprint lang-html linenums prettyprinted">
+    <h3>Error</h3>
+    <p>${entity.error}
+    <pre class="prettyprint lang-html linenums prettyprinted">
 ${entity.error?.backtrace}
-</pre>
-<br />
-#{if project_id}
-<a class="btn btn-primary" href="@{Notices.filter(project_id)}">Back</a>
-#{/if}
-#{else}
-<a class="btn btn-primary" href="@{Notices.index()}">Back</a>
-#{/else}
-
+    </pre>
+    <br />
+    #{if project_id}
+    <a class="btn btn-primary" href="@{Notices.filter(project_id)}">Back</a>
+    #{/if}
+    #{else}
+    <a class="btn btn-primary" href="@{Notices.index()}">Back</a>
+    #{/else}
+</div>

@@ -4,7 +4,7 @@
 <svg xmlns="http://www.w3.org/2000/svg"
      xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
      version="1.1" baseProfile="full"
-     width="${width}px" height="${height}px">
+     width="${width}px" height="${height+25}px">
 
     <!-- unresolved Entries -->
     <!-- ${c = init} -->
@@ -31,12 +31,12 @@
     </text>
     #{/if}
     #{/list}
-    <rect title="resolved" x="2" y="2" width="75" height="20" fill="#F2DEDE" stroke="#000" id="unresolved" />
-    <text x="5" y="15" style="font-size:14px;fill: #000">
+    <rect title="resolved" x="${width-80}" y="${height+2}" width="75" height="20" fill="#F2DEDE" stroke="#000" id="unresolved" />
+    <text x="${width-75}" y="${height+15}" style="font-size:14px;fill: #000">
     unresolved
     </text>
-    <rect title="unresolved" x="2" y="22" width="75" height="20" fill="#DFF0D8" stroke="#000" id="resolved" />
-    <text x="5" y="35" style="font-size:14px;fill: #000">
+    <rect title="unresolved" x="${width-160}" y="${height+2}" width="75" height="20" fill="#DFF0D8" stroke="#000" id="resolved" />
+    <text x="${width-145}" y="${height+15}" style="font-size:14px;fill: #000">
     resolved
     </text>
 </svg>

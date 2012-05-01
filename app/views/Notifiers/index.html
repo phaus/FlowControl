@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 <div class="row">
     <h1>Your Notifiers</h1>
-    <table class="entity Notifier table">
+    <table class="entity notifier table">
         <thead>
             <tr>
                 <th class="actions"></th>
@@ -13,7 +13,11 @@
         <tbody>
 	#{list items:entities, as:'entity'}
             <tr>
-                <td></td>
+                <td>
+                    <a class="btn" href="@{Notifiers.show(entity.id)}">
+                        <i class="icon-eye-open">show</i>
+                    </a>
+                </td>
                 <td>${entity.name}</td>
                 <td>${entity.version}</td>
                 <td><a href="${entity.url}" target="_new">${entity.url}</a></td>
