@@ -1,16 +1,6 @@
-#{if "true".equals(_resolved)}
-    #{if _project_id}
-    <a href="@{Notices.filter(_project_id)}">${_title}</a>
-    #{/if}
-    #{else}
-    <a href="@{Notices.index()}">${_title}</a>
-    #{/else}
+#{if _project_id}
+<a href="@{Notices.filter(_project_id)}">${_title}</a>
 #{/if}
 #{else}
-    #{if _project_id}
-    <a href="@{Notices.filter(_project_id).add('resolved', 'true')}">${_title}</a>
-    #{/if}
-    #{else}
-    <a href="@{Notices.index().add('resolved', 'true')}">${_title}</a>
-    #{/else}
+<a href="@{Notices.index()}">${_title}</a>
 #{/else}

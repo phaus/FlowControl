@@ -2,7 +2,33 @@
 #{set title:'Home' /}
 <h1>About</h1>
 <p>
-    To Create a Notice in the System, you have to send a XML Body with <em>application/xml</em> MIME-Type via <em>POST</em> to <em>@@{Application.notice()}</em>.</p>
+    To Create a Notice in the System, you have to send a XML Body with
+</p>
+<p>
+    MIME-Type <em>application/xml</em>
+</p>
+<p>
+    via <em>POST</em>
+</p>
+<p>
+    to <em>@@{Application.notice()}</em>
+</p>
 
-Valid Content is e.g.:<br />
-<pre class="prettyprint lang-html linenums prettyprinted">${sampleContent}</pre>
+
+<h2>Example 1</h2>
+#{cache 'about.example1', for:'10d'}
+<pre class="prettyprint lang-html linenums prettyprinted">${controllers.Application.loadExample('request1.xml')}</pre>
+#{/cache}
+
+
+<h2>Example 2</h2>
+#{cache 'about.example2', for:'10d'}
+<pre class="prettyprint lang-html linenums prettyprinted">${controllers.Application.loadExample('request2.xml')}</pre>
+#{/cache}
+
+
+<h2>Example 3</h2>
+#{cache 'about.example3', for:'10d'}
+<pre class="prettyprint lang-html linenums prettyprinted">${controllers.Application.loadExample('request3.xml')}</pre>
+#{/cache}
+

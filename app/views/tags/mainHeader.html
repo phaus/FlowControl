@@ -10,15 +10,18 @@
             <div class="nav-collapse">
                 <ul class="nav">
                     <li class="${request.controller =~ /Notices/ ? 'active' : ''}"><a href="@{Notices.index()}">Notifications</a></li>
-                    <li class="divider-vertical"></li>
                     <li class="${request.controller =~ /Projects/ ? 'active' : ''}"><a href="@{Projects.index()}">Projects</a></li>
                     <li class="${request.controller =~ /Errors/ ? 'active' : ''}"><a href="@{BacktraceErrors.index()}">Errors</a></li>
-                    <li class="divider-vertical"></li>
+                </ul>
+
+                <ul class="nav pull-right">
                     <li class="${request.action =~ /about/ ? 'active' : ''}"><a href="@{Application.about()}">About</a></li>
                     <li class="divider-vertical"></li>
                     <li class="${request.controller =~ /Accounts/ ? 'active' : ''}"><a href="@{Accounts.index()}">Accounts</a></li>
                     <li class="${request.controller =~ /Notifiers/ ? 'active' : ''}"><a href="@{Notifiers.index()}">Notifiers</a></li>
                     <li class="${request.controller =~ /ServerEnvironments/ ? 'active' : ''}"><a href="@{ServerEnvironments.index()}">Enviroments</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a target="_new" href="https://github.com/phaus/FlowControl/issues/new?title=${request.url}">Issues</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

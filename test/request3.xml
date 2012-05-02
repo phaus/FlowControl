@@ -1,0 +1,155 @@
+<notice version="2.2">
+	<api-key>8acf9947b</api-key>
+	<notifier>
+		<name>Airbrake Notifier</name>
+		<version>3.0.4</version>
+		<url>http://airbrake.io</url>
+	</notifier>
+	<error>
+		<class>AirbrakeTestingException</class>
+		<message>AirbrakeTestingException: Testing airbrake via "rake airbrake:test". If you can see this, it works.</message>
+		<backtrace>
+			<line number="432" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activesupport-3.0.10/lib/active_support/callbacks.rb" method="_run__2115867319__process_action__262109504__callbacks"/>
+			<line number="410" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activesupport-3.0.10/lib/active_support/callbacks.rb" method="send"/>
+			<line number="410" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activesupport-3.0.10/lib/active_support/callbacks.rb" method="_run_process_action_callbacks"/>
+			<line number="94" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activesupport-3.0.10/lib/active_support/callbacks.rb" method="send"/>
+			<line number="94" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activesupport-3.0.10/lib/active_support/callbacks.rb" method="run_callbacks"/>
+			<line number="17" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/abstract_controller/callbacks.rb" method="process_action"/>
+			<line number="17" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_controller/metal/rescue.rb" method="process_action"/>
+			<line number="30" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_controller/metal/instrumentation.rb" method="process_action"/>
+			<line number="52" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activesupport-3.0.10/lib/active_support/notifications.rb" method="instrument"/>
+			<line number="21" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activesupport-3.0.10/lib/active_support/notifications/instrumenter.rb" method="instrument"/>
+			<line number="52" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activesupport-3.0.10/lib/active_support/notifications.rb" method="instrument"/>
+			<line number="29" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_controller/metal/instrumentation.rb" method="process_action"/>
+			<line number="119" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/abstract_controller/base.rb" method="process"/>
+			<line number="41" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/abstract_controller/rendering.rb" method="process_without_less"/>
+			<line number="4" file="[PROJECT_ROOT]/vendor/plugins/more/rails/../lib/controller_extension.rb" method="process"/>
+			<line number="138" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_controller/metal.rb" method="dispatch"/>
+			<line number="14" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_controller/metal/rack_delegation.rb" method="dispatch"/>
+			<line number="178" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_controller/metal.rb" method="action"/>
+			<line number="62" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/routing/route_set.rb" method="call"/>
+			<line number="62" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/routing/route_set.rb" method="dispatch"/>
+			<line number="27" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/routing/route_set.rb" method="call"/>
+			<line number="148" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb" method="call"/>
+			<line number="93" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb" method="recognize"/>
+			<line number="68" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb" method="optimized_each"/>
+			<line number="92" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/rack-mount-0.6.14/lib/rack/mount/code_generation.rb" method="recognize"/>
+			<line number="139" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/rack-mount-0.6.14/lib/rack/mount/route_set.rb" method="call"/>
+			<line number="493" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/routing/route_set.rb" method="call"/>
+			<line number="20" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/rack-oauth2-0.11.0/lib/rack/oauth2/server/resource.rb" method="call"/>
+			<line number="21" file="[PROJECT_ROOT]/lib/sweet_spot/oauth2/server/resource/cookie.rb" method="call"/>
+			<line number="31" file="[PROJECT_ROOT]/vendor/git/rack-contrib/lib/rack/contrib/jsonp.rb" method="call"/>
+			<line number="35" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/warden-1.0.5/lib/warden/manager.rb" method="call"/>
+			<line number="34" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/warden-1.0.5/lib/warden/manager.rb" method="catch"/>
+			<line number="34" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/warden-1.0.5/lib/warden/manager.rb" method="call"/>
+			<line number="17" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/middleware/best_standards_support.rb" method="call"/>
+			<line number="14" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/middleware/head.rb" method="call"/>
+			<line number="24" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/rack-1.2.4/lib/rack/methodoverride.rb" method="call"/>
+			<line number="21" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/middleware/params_parser.rb" method="call"/>
+			<line number="182" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/middleware/flash.rb" method="call"/>
+			<line number="149" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/middleware/session/abstract_store.rb" method="call"/>
+			<line number="302" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/middleware/cookies.rb" method="call"/>
+			<line number="32" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activerecord-3.0.10/lib/active_record/query_cache.rb" method="call"/>
+			<line number="28" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activerecord-3.0.10/lib/active_record/connection_adapters/abstract/query_cache.rb" method="cache"/>
+			<line number="12" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activerecord-3.0.10/lib/active_record/query_cache.rb" method="cache"/>
+			<line number="31" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activerecord-3.0.10/lib/active_record/query_cache.rb" method="call"/>
+			<line number="354" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activerecord-3.0.10/lib/active_record/connection_adapters/abstract/connection_pool.rb" method="call"/>
+			<line number="46" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/middleware/callbacks.rb" method="call"/>
+			<line number="416" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activesupport-3.0.10/lib/active_support/callbacks.rb" method="_run_call_callbacks"/>
+			<line number="44" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/middleware/callbacks.rb" method="call"/>
+			<line number="105" file="[PROJECT_ROOT]/vendor/git/rack-contrib/lib/rack/contrib/sendfile.rb" method="call"/>
+			<line number="48" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/middleware/remote_ip.rb" method="call"/>
+			<line number="47" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/middleware/show_exceptions.rb" method="call"/>
+			<line number="13" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/railties-3.0.10/lib/rails/rack/logger.rb" method="call"/>
+			<line number="18" file="[PROJECT_ROOT]/vendor/git/rack-contrib/lib/rack/contrib/runtime.rb" method="call"/>
+			<line number="72" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/activesupport-3.0.10/lib/active_support/cache/strategy/local_cache.rb" method="call"/>
+			<line number="11" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/rack-1.2.4/lib/rack/lock.rb" method="call"/>
+			<line number="11" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/rack-1.2.4/lib/rack/lock.rb" method="synchronize"/>
+			<line number="11" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/rack-1.2.4/lib/rack/lock.rb" method="call"/>
+			<line number="30" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/actionpack-3.0.10/lib/action_dispatch/middleware/static.rb" method="call"/>
+			<line number="168" file="[PROJECT_ROOT]/vendor/ruby/1.8/gems/railties-3.0.10/lib/rails/application.rb" method="call"/>
+			<line number="205" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/task.rb" method="call"/>
+			<line number="205" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/task.rb" method="execute"/>
+			<line number="200" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/task.rb" method="each"/>
+			<line number="200" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/task.rb" method="execute"/>
+			<line number="158" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/task.rb" method="invoke_with_call_chain"/>
+			<line number="242" file="/Users/adam/.rvm/rubies/ree-1.8.7-2011.03/lib/ruby/1.8/monitor.rb" method="synchronize"/>
+			<line number="151" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/task.rb" method="invoke_with_call_chain"/>
+			<line number="144" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/task.rb" method="invoke"/>
+			<line number="112" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/application.rb" method="invoke_task"/>
+			<line number="90" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/application.rb" method="top_level"/>
+			<line number="90" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/application.rb" method="each"/>
+			<line number="90" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/application.rb" method="top_level"/>
+			<line number="129" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/application.rb" method="standard_exception_handling"/>
+			<line number="84" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/application.rb" method="top_level"/>
+			<line number="62" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/application.rb" method="run"/>
+			<line number="129" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/application.rb" method="standard_exception_handling"/>
+			<line number="59" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/lib/rake/application.rb" method="run"/>
+			<line number="32" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/gems/rake-0.9.2/bin/rake" method=""/>
+			<line number="19" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/bin/rake" method="load"/>
+			<line number="19" file="/Users/adam/.rvm/gems/ree-1.8.7-2011.03/bin/rake" method=""/>
+		</backtrace>
+	</error>
+	<request>
+		<url>http://example.org/verify</url>
+		<component>application</component>
+		<action>verify</action>
+		<params>
+			<var key="action">verify</var>
+			<var key="controller">application</var>
+		</params>
+		<cgi-data>
+			<var key="rack.session"/>
+			<var key="action_dispatch.request.formats">text/html</var>
+			<var key="action_dispatch.request.parameters">
+				<var key="action">verify</var>
+				<var key="controller">application</var>
+			</var>
+			<var key="SERVER_NAME">example.org</var>
+			<var key="rack.url_scheme">http</var>
+			<var key="action_dispatch.remote_ip"/>
+			<var key="CONTENT_LENGTH">0</var>
+			<var key="rack.errors">#&lt;StringIO:0x1017d2b78></var>
+			<var key="action_dispatch.request.unsigned_session_cookie"/>
+			<var key="action_dispatch.request.query_parameters"/>
+			<var key="HTTPS">off</var>
+			<var key="rack.run_once">false</var>
+			<var key="PATH_INFO">/verify</var>
+			<var key="action_dispatch.secret_token">REMOVED</var>
+			<var key="rack.version">11</var>
+			<var key="SCRIPT_NAME"/>
+			<var key="action_dispatch.request.path_parameters">
+				<var key="action">verify</var>
+				<var key="controller">application</var>
+			</var>
+			<var key="action_dispatch.show_exceptions">true</var>
+			<var key="action_dispatch.parameter_filter">clinic_fetch_tokenclinic_credentialskiosk_credentialsmechanism_argspublic_encryption_keyclinic_report_credentialsinternal_report_generation_tokendelivery_logexternal_relationshipsemailfirst_namelast_namebirthdaypasswordpassword_confirmation</var>
+			<var key="rack.multithread">false</var>
+			<var key="rack.multiprocess">true</var>
+			<var key="action_dispatch.request.request_parameters"/>
+			<var key="action_dispatch.cookies"/>
+			<var key="SERVER_PORT">80</var>
+			<var key="rack.request.query_hash"/>
+			<var key="rack.session.options">
+				<var key="expire_after"/>
+				<var key="httponly">true</var>
+				<var key="domain"/>
+				<var key="path">/</var>
+				<var key="id"/>
+				<var key="secure">false</var>
+			</var>
+			<var key="action_controller.instance">#&lt;ApplicationController:0x101661e38></var>
+			<var key="REQUEST_METHOD">GET</var>
+			<var key="warden">Warden::Proxy:2159261960 @config={:failure_app=>Devise::FailureApp, :default_scope=>:user, :default_strategies=>{:clinic=>[:fetch_authenticatable, :token_authenticatable], :clinic_visit=>[:fetch_authenticatable], :kiosk=>[:token_authenticatable], :user=>[:fetch_authenticatable, :rememberable, :database_authenticatable], :clinic_report=>[:token_authenticatable]}, :intercept_401=>false, :scope_defaults=>{:clinic=>{:store=>false}, :clinic_visit=>{:store=>false}, :kiosk=>{:store=>true}, :clinic_report=>{:store=>false}, :user=>{:store=>true}}}</var>
+			<var key="rack.input">#&lt;StringIO:0x1017d2a10></var>
+			<var key="rack.request.query_string"/>
+			<var key="action_dispatch.request.content_type"/>
+			<var key="QUERY_STRING"/>
+		</cgi-data>
+	</request>
+	<server-environment>
+		<project-root>/Users/adam/dev/my_app</project-root>
+		<environment-name>development</environment-name>
+		<hostname>skippy.local</hostname>
+	</server-environment>
+</notice>

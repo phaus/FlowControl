@@ -2,14 +2,20 @@
 <div class="row">
     <div class="span10">
         <h1>Errors <small>for ${project.name}</small></h1>
-        <table  class="entity Notice table">
+        <table class="entity error table">
             <thead>
+                #{if entities.size() == 0}
+                <tr><th colspan="5">no Errors found</th></tr>
+                #{/if}
+                #{else}
                 <tr>
                     <th class="actions"><!-- actions --></th>
                     <th>Class</th>
                     <th>Message</th>
+                    <th>Notices</th>
                     <th>Backtrace</th>
                 </tr>
+                #{/else}
             </thead>
             <tbody>
 	#{list items:entities, as:'entity'}
@@ -20,17 +26,22 @@
                     </td>
                     <td>${entity.clazz}</td>
                     <td>${entity.message}</td>
+                    <td>
+                        <span class="badge #{if entity.notices?.size() > 1}badge-important#{/if}">${entity.getNotices().size()}</span>
+                    </td>
                     #{if traceId && entity.backtrace.id == traceId}
-                    <td><a href="@{BacktraceErrors.projectIndex(project.id)}">hide Backtrace</a></td>
+                    <td><a class="btn" href="@{BacktraceErrors.index()}"><i title="hide Backtrace" class="icon-minus">hide</i></a></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td colspan="3">
+                        <pre class="prettyprint lang-html linenums prettyprinted">
                         ${trace}
+                        </pre>
                     </td>
                     #{/if}
                     #{else}
-                    <td><a href="@{BacktraceErrors.projectIndex(project.id).add('trace_id', entity.backtrace.id)}">show Backtrace</a></td>
+                    <td><a class="btn" href="@{BacktraceErrors.index().add('trace_id', entity.backtrace.id)}"><i title="show Backtrace" class="icon-plus">show</i></a></td>
                     #{/else}
                 </tr>
 	#{/list}
@@ -42,16 +53,11 @@
             <ul class="nav nav-list">
                 <li class="nav-header">Errors</li>
                 <li><a href="@{BacktraceErrors.index()}">All</a></li>
-                <li class="nav-header">By Project</li>
-                <li>
-                    <ul>
-                        #{list items:projects, as:'p'}
-                        <li>
-                            <a href="@{BacktraceErrors.projectIndex(p.id)}">${p.name}</a>
-                        </li>
-                        #{/list}
-                    </ul>
+                #{list items:projects, as:'p'}
+                <li #{if project.id == p.id} class="active" #{/if}>
+                    <a href="@{BacktraceErrors.projectIndex(p.id)}">${p.name}</a>
                 </li>
+                #{/list}
             </ul>
         </div>
     </div>

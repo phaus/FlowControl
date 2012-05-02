@@ -33,9 +33,10 @@ import play.db.jpa.Model;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Notice extends Model implements CycleRecoverable {
 
-    public final static boolean RESOLVED = true;
-    public final static boolean UNRESOLVED = false;
-
+    public final static int ALL = 0;
+    public final static int RESOLVED = 1;
+    public final static int UNRESOLVED = 2;
+    
     private final static SimpleDateFormat FORMATTER = new SimpleDateFormat("dd MMM yyyy HH:mm:ss Z");
     @Required
     @XmlAttribute
@@ -58,6 +59,7 @@ public class Notice extends Model implements CycleRecoverable {
     public Notifier notifier;
     @OneToOne(cascade = CascadeType.REMOVE)
     @XmlElement
+    @ManyToOne
     public Error error;
     @ManyToOne
     @XmlElement(name = "server-environment")
@@ -79,7 +81,7 @@ public class Notice extends Model implements CycleRecoverable {
             if (this.request != null) {
                 this.request.save();
             }
-            this.error.save();
+            this.error = this.error.getErrorReference();
         }
     }
 

@@ -7,6 +7,7 @@
 package models;
 
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -24,13 +25,16 @@ import play.libs.Codec;
 public class Line extends Model {
 
     @XmlAttribute
+    @Lob
     public String method = "";
     @Required
     @XmlAttribute
+    @Lob
     public String file;
     @Required
     @XmlAttribute
     public int number;
+    @XmlTransient
     public String hash;
     @ManyToOne
     @XmlTransient

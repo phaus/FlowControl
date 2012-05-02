@@ -16,10 +16,10 @@
         <p>
             #{if project.apiKey}
             ${project.apiKey}
-            <a class="btn" href="@{Projects.removeApiKey(project.id)}" onclick="if (!confirm('Are you sure you want to delete this record?\n* all Noticfication for this key will be deleted,\n* all Projects will be disconnected!')) return false;"><i class="icon-minus"></i></a>
+            <a class="btn" href="@{Projects.removeApiKey(project.id)}" onclick="if (!confirm('Are you sure you want to delete this record?\n* all Noticfication for this key will be deleted,\n* all Projects will be disconnected!')) return false;"><i class="icon-minus-sign"></i></a>
             #{/if}
             #{else}
-            <a class="btn" href="@{Projects.addApiKey(project.id)}"><i class="icon-plus"></i></a>
+            <a class="btn" href="@{Projects.addApiKey(project.id)}"><i class="icon-plus-sign"></i></a>
             #{/else}
         </p>
         <p>
@@ -38,7 +38,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="span4">
+    <div class="span5">
         <h2>Notices <small>this month</small></h2>
         <div class="nav thumbnail"><img alt="Graphs.notices" src="@{Graphs.notices()}.svg?period=${Calendar.DAY_OF_MONTH}&project_id=${project.id}" /></div>
     </div>
@@ -46,7 +46,7 @@
         <h2>Notices <small>last 24h</small></h2>
         <div class="nav thumbnail"><img alt="Graphs.notices" src="@{Graphs.notices()}.svg?period=${Calendar.HOUR_OF_DAY}&project_id=${project.id}" /></div>
     </div>
-    <div class="span4">
+    <div class="span3">
         <h3>Unresolved Notices</h3>
         <p>
         <ul>

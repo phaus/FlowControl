@@ -82,6 +82,24 @@ public class Project extends Model {
         return query.getResultList();
     }
 
+    public List<Notice> getNotices(int resolved) {
+        String queryString = "SELECT n "
+                + "FROM Notice n "
+                + "INNER JOIN n.project p "
+                + "WHERE n.project = :project ";
+        switch (resolved) {
+            case Notice.RESOLVED:
+                queryString += "AND n.resolved = 1 ";
+                break;
+            case Notice.UNRESOLVED:
+                queryString += "AND n.resolved = 0 ";
+                break;
+            default:
+        }
+        Query query = JPA.em().createQuery(queryString).setParameter("project", this);
+        return query.getResultList();
+    }
+
     @PrePersist
     public void prePersist() {
         if (this.id == null) {

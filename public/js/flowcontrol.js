@@ -5,7 +5,6 @@
  *
  */
 
-
 // this is a fix for clearing non-JS Browsers captions.
 function setup(){
     $('a i').select().html("");
@@ -30,3 +29,5 @@ function enhanceTable(table_class){
     });
 }
 setup();
+// make code pretty
+prettyPrint();

@@ -7,12 +7,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="stylesheet" media="screen" href="@{'/public/css/main.css'}">
         <link rel="stylesheet" media="screen" href="@{'/public/css/bootstrap.css'}">
         <link rel="stylesheet" media="screen" href="@{'/public/css/google-code-prettify/prettify.css'}">
+        <link rel="stylesheet" media="screen" href="@{'/public/css/main.css'}">
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/img/favicon.png'}">
-
+        <!-- Atom Feeds for your Projects -->
+        <link href="@@{Feeds.index()}.xml" type="application/atom+xml" rel="alternate" title="All Notices" />
         <style type="text/css" >
             body {
                 padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -21,7 +22,8 @@
         <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
         #{get 'moreScripts' /}
     </head>
-    <body onload="prettyPrint()">
+    <body>
+        <a href="https://github.com/phaus/FlowControl"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
         #{mainHeader /}
         <div class="container">
             #{doLayout /}

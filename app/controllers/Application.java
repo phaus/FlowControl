@@ -2,11 +2,14 @@ package controllers;
 
 import java.io.File;
 import java.util.List;
+import models.Account;
+import models.Error;
+import models.Notice;
+import models.Project;
 import play.*;
 import play.mvc.*;
 import static render.RenderXml.*;
 
-import models.*;
 import play.data.validation.Validation;
 import play.libs.IO;
 
@@ -23,13 +26,14 @@ public class Application extends Controller {
     }
 
     public static void index() {
+        List<Error> errorList = Error.findErrorsByAccount(currentAccount);
+        Logger.info("count errors: "+errorList.size());
         List<Project> projects = currentAccount.getProjects();
-        render(projects);
+        render(projects, errorList);
     }
 
     public static void about() {
-        String sampleContent = IO.readContentAsString(new File("test/request1.xml")).trim();
-        render(sampleContent);
+        render();
     }
 
     public static void notice(Notice notice) {
@@ -45,5 +49,11 @@ public class Application extends Controller {
 
     public static void form() {
         render();
+    }
+
+    // TODO move to Helper
+    public static String loadExample(String example) {
+        Logger.info("loading example " + example);
+        return IO.readContentAsString(new File("test/" + example)).trim();
     }
 }

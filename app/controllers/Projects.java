@@ -1,6 +1,5 @@
 package controllers;
 
-import helpers.GraphsHelper;
 import java.util.List;
 import models.ApiKey;
 import models.Notice;

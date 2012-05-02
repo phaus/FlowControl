@@ -8,7 +8,6 @@ package helpers;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,16 +21,23 @@ public class GraphsHelper {
     public final static int HOUR = Calendar.HOUR_OF_DAY;
     private static Calendar calendar = Calendar.getInstance();
 
-    public static Map createMapFromNotices(List<Notice> notices, int period) {
+    public static Map createMapFromNotices(List<Notice> notices, int period, int resolved) {
         SimpleDateFormat formatter = getFormatter(period);
         Map map = new LinkedHashMap<Integer, Integer>();
-        int count = Integer.parseInt(formatter.format(new Date()));
+        int value;
         for (int i = getFirst(period); i <= getLast(period); i++) {
             map.put(i, 0);
         }
-        for (Notice n : notices) {
-            int value = Integer.parseInt(formatter.format(n.created_at));
-            map = addValue(map, value);
+        if (resolved == Notice.RESOLVED) {
+            for (Notice n : notices) {
+                value = Integer.parseInt(formatter.format(n.updated_at));
+                map = addValue(map, value);
+            }
+        } else {
+            for (Notice n : notices) {
+                value = Integer.parseInt(formatter.format(n.created_at));
+                map = addValue(map, value);
+            }
         }
         return map;
     }
@@ -53,15 +59,17 @@ public class GraphsHelper {
         return map;
     }
 
-    public static int getGap(int period) {
+    public static int getWidth(int period) {
         switch (period) {
             case YEAR:
-                return 25;
+                return 240;
             case MONTH:
+                return 360;
             case DAY:
+                return 640;
             case HOUR:
             default:
-                return 2;
+                return 480;
         }
     }
 

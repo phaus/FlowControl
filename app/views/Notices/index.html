@@ -1,9 +1,13 @@
 #{extends 'main.html' /}
 <div class="row">
     <div class="span10">
-        <h1>Your#{if !"true".equals(resolved)} unresolved#{/if}#{else} resolved#{/else} Notices #{if project}<small>for Project ${project.name}</small>#{/if}</h1>
+        <h1>#{if resolved == 2} Unresolved#{/if}#{elseif resolved == 1 } Resolved#{/elseif}#{else} All #{/else} Notices #{if project}<small>for Project ${project.name}</small>#{/if}</h1>
         <table class="entity notice table">
             <thead>
+                #{if entities.size() == 0}
+                <tr><th colspan="5">no Notices found</th></tr>
+                #{/if}
+                #{else}
                 <tr>
                     <th class="actions"><!-- actions --></th>
                     <th>Project</th>
@@ -11,6 +15,7 @@
                     <th>Notifier</th>
                     <th>Error</th>
                 </tr>
+                #{/else}
             </thead>
             <tbody>
 	#{list items:entities, as:'entity'}
@@ -39,34 +44,42 @@
                 </tr>
 	#{/list}
             </tbody>
+
         </table>
     </div>
     <div class="span2">
         <div class="well sidebar-nav">
             <ul class="nav nav-list">
+                <li class="nav-header">State
+                    <ul class="nav nav-list">
+                        #{list items:controllers.Notices.getStates().keySet(), as:'key'}
+                        <li #{if key == resolved} class="active" #{/if}>
+                            <a href="@{Notices.setResolved(key).add('project_id', project_id )}">${controllers.Notices.getStates().get(key)}</a>
+                        </li>
+                        #{/list}
+                    </ul>
+                </li>
                 <li class="nav-header">Notices
-                    <ul>
-                        <li>#{resolved_link title:'Overview', resolved:resolved /}</li>
-                        <li class="nav-header">By Project</li>
-                        #{list items:projects, as:'project'}
-                        <li>
-                            #{resolved_link project_id:project.id, title:project.name, resolved:resolved /}
-                        </li>
-                        #{/list}
-                    </ul>
-                </li>
-                <li class="nav-header">Atom Feeds
-                    <ul>
-                        <li><a target="_new" href="@{Feeds.index()}.xml">All</a></li>
-                        <li class="nav-header">by Project</li>
-                        #{list items:projects, as:'project'}
-                        <li>
-                            <a target="_new" href="@{Feeds.show()}/${project.apiKey}.xml">${project.name}</a>
-                        </li>
-                        #{/list}
-                    </ul>
-                </li>
-            </ul>
-        </div>
+                    <ul class="nav nav-list">
+                        <li  #{if !project_id} class="active" #{/if}>#{resolved_link title:'All' /}</li>
+                        #{list items:projects, as:'p'}
+                        <li #{if project_id == p.id} class="active" #{/if}>
+                            #{resolved_link project_id:p.id, title:p.name /}
+                    </li>
+                    #{/list}
+                </ul>
+            </li>
+            <li class="nav-header">Atom Feeds
+                <ul class="nav nav-list">
+                    <li><a target="_new" href="@{Feeds.index()}.xml">All</a></li>
+                    #{list items:projects, as:'project'}
+                    <li>
+                        <a target="_new" href="@{Feeds.show()}/${project.apiKey}.xml">${project.name}</a>
+                    </li>
+                    #{/list}
+                </ul>
+            </li>
+        </ul>
     </div>
+</div>
 </div>

@@ -4,7 +4,6 @@ import java.util.List;
 import models.Backtrace;
 import models.Error;
 import models.Project;
-import play.mvc.Controller;
 import play.i18n.Messages;
 import play.data.validation.Validation;
 import play.data.validation.Valid;

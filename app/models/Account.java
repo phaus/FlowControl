@@ -88,15 +88,19 @@ public class Account extends Model {
         return false;
     }
 
-    public List<Notice> getNotices(boolean resolved) {
+    public List<Notice> getNotices(int resolved) {
         String queryString = "SELECT n "
                 + "FROM Notice n "
                 + "INNER JOIN n.project p "
                 + "WHERE n.project = p ";
-        if (resolved) {
-            queryString += "AND n.resolved = 1 ";
-        } else {
-            queryString += "AND n.resolved = 0 ";
+        switch (resolved) {
+            case Notice.RESOLVED:
+                queryString += "AND n.resolved = 1 ";
+                break;
+            case Notice.UNRESOLVED:
+                queryString += "AND n.resolved = 0 ";
+                break;
+            default:
         }
         queryString += "AND p IN ("
                 + "SELECT ap FROM Account a INNER JOIN a.projects ap WHERE a = :account"
@@ -106,16 +110,20 @@ public class Account extends Model {
         return query.getResultList();
     }
 
-    public List<Notice> getNoticesForPeriodAndProject(int period, Project project, boolean resolved) {
+    public List<Notice> getNoticesForPeriodAndProject(int period, Project project, int resolved) {
         String queryString = "SELECT n "
                 + "FROM Notice n "
                 + "INNER JOIN n.project p "
                 + "WHERE n.project = p "
                 + "AND n.created_at > :past ";
-        if (resolved) {
-            queryString += "AND n.resolved = 1 ";
-        } else {
-            queryString += "AND n.resolved = 0 ";
+        switch (resolved) {
+            case Notice.RESOLVED:
+                queryString += "AND n.resolved = 1 ";
+                break;
+            case Notice.UNRESOLVED:
+                queryString += "AND n.resolved = 0 ";
+                break;
+            default:
         }
         queryString += "AND p = :project "
                 + "ORDER BY n.created_at DESC";
@@ -123,16 +131,20 @@ public class Account extends Model {
         return query.getResultList();
     }
 
-    public List<Notice> getNoticesForPeriod(int period, boolean resolved) {
+    public List<Notice> getNoticesForPeriod(int period, int resolved) {
         String queryString = "SELECT n "
                 + "FROM Notice n "
                 + "INNER JOIN n.project p "
                 + "WHERE n.project = p "
                 + "AND n.created_at > :past ";
-        if (resolved) {
-            queryString += "AND n.resolved = 1 ";
-        } else {
-            queryString += "AND n.resolved = 0 ";
+        switch (resolved) {
+            case Notice.RESOLVED:
+                queryString += "AND n.resolved = 1 ";
+                break;
+            case Notice.UNRESOLVED:
+                queryString += "AND n.resolved = 0 ";
+                break;
+            default:
         }
         queryString += "AND p IN ("
                 + "SELECT ap FROM Account a INNER JOIN a.projects ap WHERE a = :account"
@@ -142,15 +154,19 @@ public class Account extends Model {
         return query.getResultList();
     }
 
-    public List<Notice> getNoticesForProject(Project project, boolean resolved) {
+    public List<Notice> getNoticesForProject(Project project, int resolved) {
         String queryString = "SELECT n "
                 + "FROM Notice n "
                 + "INNER JOIN n.project p "
                 + "WHERE n.project = p ";
-        if (resolved) {
-            queryString += "AND n.resolved = 1 ";
-        } else {
-            queryString += "AND n.resolved = 0 ";
+        switch (resolved) {
+            case Notice.RESOLVED:
+                queryString += "AND n.resolved = 1 ";
+                break;
+            case Notice.UNRESOLVED:
+                queryString += "AND n.resolved = 0 ";
+                break;
+            default:
         }
         queryString += "AND p = :project "
                 + "ORDER BY n.created_at DESC";

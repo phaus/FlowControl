@@ -1,15 +1,21 @@
 #{extends 'main.html' /}
 <div class="row">
     <div class="span10">
-        <h1>Your Errors</h1>
+        <h1>Errors</h1>
         <table class="entity error table">
             <thead>
+                #{if entities.size() == 0}
+                <tr><th colspan="5">no Errors found</th></tr>
+                #{/if}
+                #{else}
                 <tr>
                     <th class="actions"><!-- actions --></th>
                     <th>Class</th>
                     <th>Message</th>
+                    <th>Notices</th>
                     <th>Backtrace</th>
                 </tr>
+                #{/else}
             </thead>
             <tbody>
 	#{list items:entities, as:'entity'}
@@ -20,8 +26,11 @@
                     </td>
                     <td>${entity.clazz}</td>
                     <td>${entity.message}</td>
+                    <td>
+                        <span class="badge #{if entity.notices?.size() > 1}badge-important#{/if}">${entity.getNotices().size()}</span>
+                    </td>
                     #{if traceId && entity.backtrace.id == traceId}
-                    <td><a href="@{BacktraceErrors.index()}">hide Backtrace</a></td>
+                    <td><a class="btn" href="@{BacktraceErrors.index()}"><i title="hide Backtrace" class="icon-minus">hide</i></a></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -32,7 +41,7 @@
                     </td>
                     #{/if}
                     #{else}
-                    <td><a href="@{BacktraceErrors.index().add('trace_id', entity.backtrace.id)}">show Backtrace</a></td>
+                    <td><a class="btn" href="@{BacktraceErrors.index().add('trace_id', entity.backtrace.id)}"><i title="show Backtrace" class="icon-plus">show</i></a></td>
                     #{/else}
                 </tr>
 	#{/list}
@@ -43,17 +52,12 @@
         <div class="well sidebar-nav">
             <ul class="nav nav-list">
                 <li class="nav-header">Errors</li>
-                <li><a href="@{BacktraceErrors.index()}">All</a></li>
-                <li class="nav-header">By Project</li>
+                <li class="active"><a href="@{BacktraceErrors.index()}">All</a></li>
+                #{list items:projects, as:'p'}
                 <li>
-                    <ul>
-                        #{list items:projects, as:'p'}
-                        <li>
-                            <a href="@{BacktraceErrors.projectIndex(p.id)}">${p.name}</a>
-                        </li>
-                        #{/list}
-                    </ul>
+                    <a href="@{BacktraceErrors.projectIndex(p.id)}">${p.name}</a>
                 </li>
+                #{/list}
             </ul>
         </div>
     </div>

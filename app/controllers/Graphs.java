@@ -27,18 +27,16 @@ public class Graphs extends Application {
             Project project = Project.findById(project_id);
             resolved = currentAccount.getNoticesForPeriodAndProject(period, project, Notice.RESOLVED);
             unresolved = currentAccount.getNoticesForPeriodAndProject(period, project, Notice.UNRESOLVED);
-
         } else {
             resolved = currentAccount.getNoticesForPeriod(period, Notice.RESOLVED);
             unresolved = currentAccount.getNoticesForPeriod(period, Notice.UNRESOLVED);
-
         }
-        Map openEntries = GraphsHelper.createMapFromNotices(unresolved, period);
-        Map resolvedEntries = GraphsHelper.createMapFromNotices(resolved, period);
+        Map openEntries = GraphsHelper.createMapFromNotices(unresolved, period, Notice.UNRESOLVED);
+        Map resolvedEntries = GraphsHelper.createMapFromNotices(resolved, period, Notice.RESOLVED);
 
-        int width = 480;
+        int width = GraphsHelper.getWidth(period);
         int height = 200;
-        int gap = GraphsHelper.getGap(period);
+        int gap = 1;
         int max = GraphsHelper.getMax(openEntries);
         int xpart = width / GraphsHelper.getLast(period);
         int ypart = max > 0 ? (height - 50) / max : 0;

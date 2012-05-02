@@ -26,7 +26,6 @@ import play.db.jpa.Model;
 public class Notifier extends Model {
 
     @Required
-    @Column(unique = true)
     @XmlElement
     public String name;
     @Required

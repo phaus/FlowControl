@@ -9,7 +9,7 @@
                 <th>Url</th>
                 <th>Created</th>
                 <th></th>
-                <th>Api Key</th>
+                <th>API-Key</th>
             </tr>
         </thead>
         <tbody>
@@ -23,7 +23,7 @@
                         <i class="icon-pencil">edit</i>
                     </a>
                     <a class="btn" href="@{Projects.delete(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?')) return false;">
-                        <i class="icon-trash"class="icon-align-left">delete</i>
+                        <i class="icon-trash">delete</i>
                     </a>
                 </td>
                 <td>${entity.name}</td>
@@ -32,7 +32,7 @@
                 <td>
                     #{if entity.apiKey}
                     <a class="btn" href="@{Projects.removeApiKey(entity.id)}" onclick="if (!confirm('Are you sure you want to delete this record?\n* all Noticfication for this key will be deleted,\n* all Projects will be disconnected!')) return false;">
-                        <i class="icon-minus">remove</i>
+                        <i title="remove API Key" class="icon-minus-sign">remove</i>
                     </a>
                 </td>
                 <td>
@@ -40,7 +40,7 @@
                     #{/if}
                     #{else}
                     <a class="btn" href="@{Projects.addApiKey(entity.id)}">
-                        <i class="icon-plus">add</i>
+                        <i title="add new API Key" class="icon-plus-sign">add</i>
                     </a>
                 </td>
                 <td>

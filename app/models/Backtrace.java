@@ -43,9 +43,9 @@ public class Backtrace extends Model {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < lines.size() && i < 10; i++) {
+        for (int i = 0; i < lines.size(); i++) {
             sb.append(lines.get(i)).append("\n");
         }
-        return sb.toString();
+        return sb.toString().trim();
     }
 }
