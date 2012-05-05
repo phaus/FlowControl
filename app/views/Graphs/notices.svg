@@ -11,8 +11,8 @@
     #{list items:openEntries.keySet(), as:'key'}
     <!-- ${c = c + xpart} -->
     #{if openEntries.get(key) > 0}
-    <rect title="${openEntries.get(key)}" x="${c+gap}" y="${height - openEntries.get(key)*ypart-15}" width="${xpart*0.6}" height="${openEntries.get(key)*ypart-10}" fill="#F2DEDE" stroke="#000" id="ur-${key}"  />
-    <text x="${c+gap}" y="14" style="font-size:16px;fill: #000">
+    <rect title="${openEntries.get(key)}" x="${c+gap}" y="${height - openEntries.get(key)*ypart-15}" width="${xpart*0.6}" height="${openEntries.get(key)*ypart-10}" fill="#A73635" stroke="#000" id="ur-${key}"  />
+    <text x="${c+gap}" y="14" style="font-size:16px;fill: #FFF">
     ${openEntries.get(key)}
     </text>
     #{/if}
@@ -26,17 +26,17 @@
     <!-- ${c = c + xpart} -->
     #{if resolvedEntries.get(key) > 0}
     <rect title="${resolvedEntries.get(key)}" x="${c+gap}" y="${height - resolvedEntries.get(key)*ypart-15}" width="${xpart*0.6}" height="${resolvedEntries.get(key)*ypart-10}" fill="#DFF0D8" stroke="#000" id="r-${key}"  />
-    <text x="${c+gap}" y="30" style="font-size:16px;fill: #000">
+    <text x="${c+gap+2}" y="30" style="font-size:16px;fill: #000">
     ${resolvedEntries.get(key)}
     </text>
     #{/if}
     #{/list}
-    <rect title="resolved" x="${width-80}" y="${height+2}" width="75" height="20" fill="#F2DEDE" stroke="#000" id="unresolved" />
-    <text x="${width-75}" y="${height+15}" style="font-size:14px;fill: #000">
+    <rect title="resolved" x="${width-80}" y="${height+2}" width="75" height="20" fill="#A73635" stroke="#000" id="unresolved" />
+    <text x="${width-77}" y="${height+17}" style="font-size:16px;fill: #FFF">
     unresolved
     </text>
     <rect title="unresolved" x="${width-160}" y="${height+2}" width="75" height="20" fill="#DFF0D8" stroke="#000" id="resolved" />
-    <text x="${width-145}" y="${height+15}" style="font-size:14px;fill: #000">
+    <text x="${width-148}" y="${height+17}" style="font-size:16px;fill: #000">
     resolved
     </text>
 </svg>

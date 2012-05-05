@@ -8,6 +8,7 @@ package helpers;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,11 +24,8 @@ public class GraphsHelper {
 
     public static Map createMapFromNotices(List<Notice> notices, int period, int resolved) {
         SimpleDateFormat formatter = getFormatter(period);
-        Map map = new LinkedHashMap<Integer, Integer>();
+        Map map = getMap(period); //new LinkedHashMap<Integer, Integer>();
         int value;
-        for (int i = getFirst(period); i <= getLast(period); i++) {
-            map.put(i, 0);
-        }
         if (resolved == Notice.RESOLVED) {
             for (Notice n : notices) {
                 value = Integer.parseInt(formatter.format(n.updated_at));
@@ -38,6 +36,24 @@ public class GraphsHelper {
                 value = Integer.parseInt(formatter.format(n.created_at));
                 map = addValue(map, value);
             }
+        }
+        return map;
+    }
+
+    private static Map getMap(int period) {
+        SimpleDateFormat formatter = getFormatter(period);
+        Map map = new LinkedHashMap<Integer, Integer>();
+        int max = getLast(period);
+        int min = getFirst(period);
+        int current = Integer.parseInt(formatter.format(new Date()));
+        int start = current != min ? (current + 1) : current;
+        int count = start;
+        for (int i = 0; i < max; i++) {
+            count += 1;
+            if (count > max) {
+                count = min;
+            }
+            map.put(count, 0);
         }
         return map;
     }
@@ -79,7 +95,7 @@ public class GraphsHelper {
                 return calendar.get(Calendar.YEAR) - 2;
             case MONTH:
             case DAY:
-                return 0;
+                return 1;
             case HOUR:
             default:
                 return 0;

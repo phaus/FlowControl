@@ -27,7 +27,6 @@ public class Application extends Controller {
 
     public static void index() {
         List<Error> errorList = Error.findErrorsByAccount(currentAccount);
-        Logger.info("count errors: "+errorList.size());
         List<Project> projects = currentAccount.getProjects();
         render(projects, errorList);
     }
@@ -54,6 +53,6 @@ public class Application extends Controller {
     // TODO move to Helper
     public static String loadExample(String example) {
         Logger.info("loading example " + example);
-        return IO.readContentAsString(new File("test/" + example)).trim();
+        return IO.readContentAsString(new File(Play.applicationPath+"/test/" + example)).trim();
     }
 }
