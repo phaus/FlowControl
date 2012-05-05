@@ -46,9 +46,11 @@ public class GraphsHelper {
         int max = getLast(period);
         int min = getFirst(period);
         int current = Integer.parseInt(formatter.format(new Date()));
+        System.out.println("max, min, current, period");
+        System.out.println(" " + max + ", " + min + ", " + current + ", " + period);
         int start = current != min ? (current + 1) : current;
         int count = start;
-        for (int i = 0; i < max; i++) {
+        for (int i = 0; i <= max; i++) {
             count += 1;
             if (count > max) {
                 count = min;
@@ -78,9 +80,9 @@ public class GraphsHelper {
     public static int getWidth(int period) {
         switch (period) {
             case YEAR:
-                return 240;
+                return 480;
             case MONTH:
-                return 360;
+                return 480;
             case DAY:
                 return 640;
             case HOUR:

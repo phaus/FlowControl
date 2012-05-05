@@ -1,5 +1,5 @@
 <div class="navbar navbar-fixed-top">
-    <a href="https://github.com/phaus/FlowControl"><img style="position: absolute; top: 0px; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+    <a class="visible-desktop" href="https://github.com/phaus/FlowControl"><img style="position: absolute; top: 0px; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
     <div class="navbar-inner">
         <div class="container">
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -8,9 +8,9 @@
             <a class="brand" href="@{Application.index()}">FlowControl</a>
             <div class="nav-collapse">
                 <ul class="nav">
-                    <li class="${request.controller =~ /Notices/ ? 'active' : ''}"><a href="@{Notices.index()}">Notifications</a></li>
-                    <li class="divider-vertical"></li>
                     <li class="${request.controller =~ /Errors/ ? 'active' : ''}"><a href="@{BacktraceErrors.index()}">Errors</a></li>
+                    <li class="divider-vertical"></li>
+                    <li class="${request.controller =~ /Notices/ ? 'active' : ''}"><a href="@{Notices.index()}">Notifications</a></li>
                     <li class="divider-vertical"></li>
                     <li class="${request.controller =~ /Projects/ ? 'active' : ''}"><a href="@{Projects.index()}">Projects</a></li>
                 </ul>
@@ -18,11 +18,17 @@
                 <ul class="nav pull-right">
                     <li class="${request.action =~ /about/ ? 'active' : ''}"><a href="@{Application.about()}">About</a></li>
                     <li class="divider-vertical"></li>
-                    <li class="${request.controller =~ /Accounts/ ? 'active' : ''}"><a href="@{Accounts.index()}">Accounts</a></li>
-                    <li class="${request.controller =~ /Notifiers/ ? 'active' : ''}"><a href="@{Notifiers.index()}">Notifiers</a></li>
-                    <li class="${request.controller =~ /ServerEnvironments/ ? 'active' : ''}"><a href="@{ServerEnvironments.index()}">Enviroments</a></li>
-                    <li class="divider-vertical"></li>
-                    <li><a target="_new" href="https://github.com/phaus/FlowControl/issues/new?title=${request.url}">Issues</a></li>
+                    <li class="dropdown" id="user-menu">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Settings
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="${request.controller =~ /Accounts/ ? 'active' : ''}"><a href="@{Accounts.index()}">Accounts</a></li>
+                            <li class="${request.controller =~ /Notifiers/ ? 'active' : ''}"><a href="@{Notifiers.index()}">Notifiers</a></li>
+                            <li class="${request.controller =~ /ServerEnvironments/ ? 'active' : ''}"><a href="@{ServerEnvironments.index()}">Enviroments</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

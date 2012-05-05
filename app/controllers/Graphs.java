@@ -36,11 +36,11 @@ public class Graphs extends Application {
 
         int width = GraphsHelper.getWidth(period);
         int height = 200;
-        int gap = 1;
-        int max = GraphsHelper.getMax(openEntries);
+        int gap = 0;
+        int max = GraphsHelper.getMax(openEntries)+1;
         int xpart = width / GraphsHelper.getLast(period);
-        int ypart = max > 0 ? (height - 50) / max : 0;
-        int init = -xpart;
-        render(openEntries, resolvedEntries, width, height, xpart, ypart, gap, init);
+        int ypart = max > 0 ? (height) / max : 0;
+        int init = -xpart+50;
+        render(openEntries, resolvedEntries, width, height, xpart, ypart, gap, init, max);
     }
 }

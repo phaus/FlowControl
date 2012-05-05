@@ -26,13 +26,14 @@
         #{mainHeader /}
         <div class="container">
             #{doLayout /}
-            <hr />
-            <footer>
-                <p>&copy; PHL 2012</p>
+            <footer class="navbar navbar-fixed-bottom">
+                <div><a class="btn" target="_new" href="https://github.com/phaus/FlowControl/issues/new?title=${request.url}"><i class="icon-comment"></i> Issues</a></div>
+                <div class="pull-right">&copy; PHL 2012</div>
             </footer>
         </div>
-        <script src="@{'/public/js/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/js/jquery-1.7.1.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         <script src="@{'/public/js/bootstrap.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/js/bootstrap-dropdown.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         <script src="@{'/public/js/google-code-prettify/prettify.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         <script src="@{'/public/js/flowcontrol.js'}" type="text/javascript" charset="${_response_encoding}"></script>
     </body>

@@ -22,7 +22,7 @@
         <i class="icon-ok #{if entity.resolved}icon-white#{/if}">resolve</i>
     </button>
     #{if project_id}
-    <a class="btn" href="@{Notices.filter(project_id)}">Back</a>
+    <a class="btn" href="@{Notices.setActiveProjectId(project_id)}">Back</a>
     #{/if}
     #{else}
     <a class="btn" href="@{Notices.index()}">Back</a>

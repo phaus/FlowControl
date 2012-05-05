@@ -1,16 +1,15 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
-<div class="hero-unit">
-    <h1>Flow-Control</h1>
-    <blockquote>
-        <p>In data communications, flow control is the process of managing the rate of data transmission between two nodes to prevent a fast sender from outrunning a slow receiver.
-        </p>
-        <small><a target="_new" href="http://en.wikipedia.org/wiki/Flow_control">http://en.wikipedia.org/wiki/Flow_control</a></small>
-    </blockquote>
-</div>
 <div class="row">
     <div class="span4">
-        <h2><small>unresolved</small> Notices <small>by Project</small></h2>
+        <h2>Notices <small>during the last 24h</small></h2>
+        <div class="nav thumbnail"><img alt="Graphs.notices" src="@{Graphs.notices()}.svg" /></div>
+        <p>
+            <a class="btn" href="@{Notices.index()}">View details »</a>
+        </p>
+    </div>
+    <div class="span4">
+        <h2>Notices <small>unresolved by Project</small></h2>
         <ul class="nav nav-tabs nav-stacked">
             #{list items:projects, as:'project'}
             <li><a href="@{Notices.setActiveProjectId(project.id)}"><span class="right badge #{if project.getUnresolvedNotices().size() > 0}badge-important#{/if}">${project.getUnresolvedNotices().size()}</span>${project.name}</a></li>
@@ -18,13 +17,6 @@
         </ul>
         <p>
             <a class="btn" href="@{Projects.index()}">View details »</a>
-        </p>
-    </div>
-    <div class="span4">
-        <h2><small>unresolved</small> Notices <small>last 24h</small></h2>
-        <div class="nav thumbnail"><img alt="Graphs.notices" src="@{Graphs.notices()}.svg" /></div>
-        <p>
-            <a class="btn" href="@{Notices.index()}">View details »</a>
         </p>
     </div>
     <div class="span4">
