@@ -4,6 +4,7 @@ import java.util.List;
 import models.Backtrace;
 import models.Error;
 import models.Project;
+import play.cache.Cache;
 import play.i18n.Messages;
 import play.data.validation.Validation;
 import play.data.validation.Valid;
@@ -11,27 +12,22 @@ import play.data.validation.Valid;
 public class BacktraceErrors extends Application {
 
     public static void index() {
+        Long project_id = getActiveProjectId();
         Long traceId = params.get("trace_id", Long.class);
         Backtrace trace = null;
-        List<Error> entities = Error.findErrorsByAccount(currentAccount);
         List<Project> projects = currentAccount.getProjects();
+        List<Error> entities;
         if (traceId != null) {
             trace = Backtrace.findById(traceId);
         }
-        render(entities, projects, trace, traceId);
-    }
-
-    public static void projectIndex(java.lang.Long projectId) {
-        Long traceId = params.get("trace_id", Long.class);
-        Backtrace trace = null;
-        List<Error> entities = null;
-        List<Project> projects = currentAccount.getProjects();
-        Project project = Project.findById(projectId);
-        entities = project.getErrorsForAccount(currentAccount);
-        if (traceId != null) {
-            trace = Backtrace.findById(traceId);
+        if (project_id == null) {
+            entities = Error.findErrorsByAccount(currentAccount);
+            render(entities, projects, trace, traceId);
+        } else {
+            Project project = Project.findById(project_id);
+            entities = project.getErrorsForAccount(currentAccount);
+            render(entities, projects, trace, project, traceId);
         }
-        render(entities, projects, trace, project, traceId);
     }
 
     public static void create(Error entity) {
@@ -74,6 +70,20 @@ public class BacktraceErrors extends Application {
 
         entity.save();
         flash.success(Messages.get("scaffold.updated", "Error"));
+        index();
+    }
+
+    private static Long getActiveProjectId() {
+        Long activeProjectId = Cache.get(session.getId() + "-activeProjectId", Long.class);
+        return activeProjectId;
+    }
+
+    public static void setActiveProjectId(Long activeProjectId) {
+        if (activeProjectId == 0) {
+            Cache.delete(session.getId() + "-activeProjectId");
+        } else {
+            Cache.set(session.getId() + "-activeProjectId", activeProjectId, "24h");
+        }
         index();
     }
 }

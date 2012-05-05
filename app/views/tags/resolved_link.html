@@ -1,6 +1,6 @@
 #{if _project_id}
-<a href="@{Notices.filter(_project_id)}">${_title}</a>
+<a href="@{Notices.setActiveProjectId(_project_id)}">${_title}</a>
 #{/if}
 #{else}
-<a href="@{Notices.index()}">${_title}</a>
+<a href="@{Notices.setActiveProjectId(0)}">${_title}</a>
 #{/else}

@@ -78,11 +78,20 @@ public class Project extends Model {
                 + "WHERE p = :project "
                 + "AND p IN ("
                 + "SELECT ap FROM Account a INNER JOIN a.projects ap WHERE a = :account"
-                + ")").setParameter("account", currentAccount).setParameter("project", this);
+                + ") GROUP BY e.id "
+                + "ORDER by count(n.id) ASC ").setParameter("account", currentAccount).setParameter("project", this);
         return query.getResultList();
     }
 
-    public List<Notice> getNotices(int resolved) {
+    public List<Notice> getResolvedNotices() {
+        return getNoticesWithState(Notice.RESOLVED);
+    }
+
+    public List<Notice> getUnresolvedNotices() {
+        return getNoticesWithState(Notice.UNRESOLVED);
+    }
+    
+    public List<Notice> getNoticesWithState(int resolved) {
         String queryString = "SELECT n "
                 + "FROM Notice n "
                 + "INNER JOIN n.project p "

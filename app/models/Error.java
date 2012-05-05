@@ -38,7 +38,6 @@ public class Error extends Model {
     @OneToOne(cascade = CascadeType.REMOVE)
     @XmlElement(name = "backtrace")
     public Backtrace backtrace;
-
     @XmlTransient
     @OneToMany(mappedBy = "error")
     public List<Notice> notices;
@@ -56,16 +55,42 @@ public class Error extends Model {
         return query.getResultList();
     }
 
-    public Error getErrorReference(){
+    public Error getErrorReference() {
         this.hash = Codec.hexSHA1(clazz + "#" + message + "#" + backtrace);
         Error error = Error.find("hash = ?", this.hash).first();
-        if(error == null){
+        if (error == null) {
             return this.save();
-        }else {
+        } else {
             return error;
         }
     }
-    
+
+    public List<Notice> getResolvedNotices() {
+        return getNoticesWithState(Notice.RESOLVED);
+    }
+
+    public List<Notice> getUnresolvedNotices() {
+        return getNoticesWithState(Notice.UNRESOLVED);
+    }
+
+    public List<Notice> getNoticesWithState(int resolved) {
+        String queryString = "SELECT n "
+                + "FROM Notice n "
+                + "WHERE n.error = :error ";
+        switch (resolved) {
+            case Notice.RESOLVED:
+                queryString += "AND n.resolved = 1 ";
+                break;
+            case Notice.UNRESOLVED:
+                queryString += "AND n.resolved = 0 ";
+                break;
+            default:
+        }
+        queryString += "ORDER BY n.created_at DESC";
+        Query query = JPA.em().createQuery(queryString).setParameter("error", this);
+        return query.getResultList();
+    }
+
     @PrePersist
     public void prePersist() {
         this.backtrace.save();

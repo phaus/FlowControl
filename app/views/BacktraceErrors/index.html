@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 <div class="row">
     <div class="span10">
-        <h1>Errors</h1>
+        <h1>Errors #{if project} <small>for ${project.name}</small> #{/if}</h1>
         <table class="entity error table">
             <thead>
                 #{if entities.size() == 0}
@@ -27,7 +27,7 @@
                     <td>${entity.clazz}</td>
                     <td>${entity.message}</td>
                     <td>
-                        <span class="badge #{if entity.notices?.size() > 1}badge-important#{/if}">${entity.getNotices().size()}</span>
+                        <span class="badge #{if entity.getUnresolvedNotices().size() > 1}badge-important#{/if}">${entity.getUnresolvedNotices().size()}</span>
                     </td>
                     #{if traceId && entity.backtrace.id == traceId}
                     <td><a class="btn" href="@{BacktraceErrors.index()}"><i title="hide Backtrace" class="icon-minus">hide</i></a></td>
@@ -51,11 +51,11 @@
     <div class="span2">
         <div class="well sidebar-nav">
             <ul class="nav nav-list">
-                <li class="nav-header">Errors</li>
-                <li class="active"><a href="@{BacktraceErrors.index()}">All</a></li>
+                <li class="nav-header">Project</li>
+                <li #{if !project} class="active" #{/if}><a href="@{BacktraceErrors.setActiveProjectId(0)}">All</a></li>
                 #{list items:projects, as:'p'}
-                <li>
-                    <a href="@{BacktraceErrors.projectIndex(p.id)}">${p.name}</a>
+                <li #{if project && project.id == p.id} class="active" #{/if}>
+                    <a href="@{BacktraceErrors.setActiveProjectId(p.id)}">${p.name}</a>
                 </li>
                 #{/list}
             </ul>

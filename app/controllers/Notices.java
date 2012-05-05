@@ -13,18 +13,18 @@ import play.data.validation.Valid;
 public class Notices extends Application {
 
     public static void index() {
+        Long project_id = getActiveProjectId();
         Integer resolved = getResolved();
         List<Project> projects = currentAccount.getProjects();
-        List<Notice> entities = currentAccount.getNotices(resolved);
-        render(entities, projects, resolved);
-    }
-
-    public static void filter(Long project_id) {
-        Integer resolved = getResolved();
-        Project project = Project.findById(project_id);
-        List<Project> projects = currentAccount.getProjects();
-        List<Notice> entities = currentAccount.getNoticesForProject(project, resolved);
-        renderTemplate("Notices/index.html", entities, projects, project, project_id, resolved);
+        List<Notice> entities;
+        if (project_id == null) {
+            entities = currentAccount.getNotices(resolved);
+            render(entities, projects, resolved);
+        } else {
+            Project project = Project.findById(project_id);
+            entities = currentAccount.getNoticesForProject(project, resolved);
+            render(entities, projects, project, project_id, resolved);
+        }
     }
 
     public static void create(Notice entity) {
@@ -71,6 +71,20 @@ public class Notices extends Application {
         index();
     }
 
+    private static Long getActiveProjectId() {
+        Long activeProjectId = Cache.get(session.getId() + "-activeProjectId", Long.class);
+        return activeProjectId;
+    }
+
+    public static void setActiveProjectId(Long activeProjectId) {
+        if(activeProjectId == 0){
+            Cache.delete(session.getId() + "-activeProjectId");
+        }else{
+            Cache.set(session.getId() + "-activeProjectId", activeProjectId, "24h");
+        }
+        index();
+    }
+
     private static Integer getResolved() {
         Integer resolved = Cache.get(session.getId() + "-resolved", Integer.class);
         if (resolved == null) {
@@ -81,21 +95,15 @@ public class Notices extends Application {
 
     public static void setResolved(Integer resolved) {
         Cache.set(session.getId() + "-resolved", resolved, "24h");
-        Long project_id = params.get("project_id", Long.class);
-        if (project_id != null) {
-            filter(project_id);
-        } else {
-            index();
-        }
-
+        index();
     }
 
     // TODO there might be a better way to do this.
     public static Map getStates() {
         Map states = new HashMap<Integer, String>();
-        states.put(Notice.ALL, "all");
-        states.put(Notice.RESOLVED, "resolved");
         states.put(Notice.UNRESOLVED, "unresolved");
+        states.put(Notice.RESOLVED, "resolved");
+        states.put(Notice.ALL, "all");
         return states;
     }
 }
