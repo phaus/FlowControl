@@ -8,6 +8,9 @@
 
 ApiKey(apikey1):
     apiKey: 8acf9947b
+
+ApiKey(apikey2):
+    apiKey: 4f7ab158-9ba0-4d4d-a107-0afd713c73a1
     
 Project(example):
     name: Example
@@ -16,17 +19,14 @@ Project(example):
 
 Project(flowcontrol):
     name: FlowControl
-    url: https://wiki.innoq.com/display/innoq/FlowControl
-
-Project(liqid):
-    name: LiQID
-    url: https://testldap.innoq.com/liqid
+    url: https://github.com/phaus/FlowControl
+    apiKey: apikey2
     
 Account(user):
     uid: user
     email: user@example.com
     password: user
-    projects: [flowcontrol, liqid, example]
+    projects: [flowcontrol, example]
 
 ServerEnvironment(env1):
     projectRoot: null

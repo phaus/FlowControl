@@ -2,6 +2,7 @@
 #{set title:'Home' /}
 <div class="hero-unit">
     <h1>About</h1>
+    <h2>How to use:</h2>
     <p>
         To Create a Notice in the System, you have to send a XML Body with
     </p>
@@ -32,5 +33,13 @@
     #{cache 'about.example3', for:'10d'}
     <pre class="prettyprint lang-html linenums prettyprinted">${controllers.Application.loadExample('request3.xml')}</pre>
     #{/cache}
+
+    <h1>License</h1>
+    <p>
+    FlowControl states the Apache License, Version 2.0 as the License Agreement.
+    </p>
+    <p>
+    <a target="_new" href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License, Version 2.0</a>
+    </p>
 </div>
 
