@@ -42,7 +42,7 @@ public class Application extends Controller {
             badRequest();
         } else {
             notice.save();
-            renderXML(notice);
+            ok();
         }
     }
 
