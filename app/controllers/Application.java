@@ -6,12 +6,12 @@ import models.Account;
 import models.Error;
 import models.Notice;
 import models.Project;
-import play.*;
-import play.mvc.*;
-import static render.RenderXml.*;
-
+import play.Logger;
+import play.Play;
 import play.data.validation.Validation;
 import play.libs.IO;
+import play.mvc.Before;
+import play.mvc.Controller;
 
 public class Application extends Controller {
 
@@ -53,6 +53,6 @@ public class Application extends Controller {
     // TODO move to Helper
     public static String loadExample(String example) {
         Logger.info("loading example " + example);
-        return IO.readContentAsString(new File(Play.applicationPath+"/test/" + example)).trim();
+        return IO.readContentAsString(new File(Play.applicationPath + "/test/" + example)).trim();
     }
 }

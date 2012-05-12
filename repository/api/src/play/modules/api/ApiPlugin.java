@@ -4,7 +4,7 @@
  * @author Philipp Haussleiter
  *
  */
-package plugin;
+package play.modules.api;
 
 import java.io.StringReader;
 import java.lang.annotation.Annotation;

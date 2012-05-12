@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- width:${width} heigh:${height} gap:${gap} c:${c}  -->
-<svg xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
-     version="1.1" baseProfile="full"
-     width="1920px" height="1080px">
-    <text x="10" y="10" style="font-size:12px">
-        #{if play.mode.name() == 'DEV'}
-            ${exception.getLocalizedMessage()}
+<error>
+#{if play.mode.name() == 'DEV'}
+    <message>${exception.getLocalizedMessage()}</message>
         #{/if}
         #{else}
-        <h1>Oops, an error occured</h1>
             #{if exception instanceof play.exceptions.PlayException}
-            This exception has been logged with id
-        <strong>${exception.id}</strong>.
+    <message>This exception has been logged with id</message>
+    <id>${exception.id}</id>.
             #{/if}
         #{/else}
-    </text>
-</svg>
+</error>

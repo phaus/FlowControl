@@ -4,7 +4,7 @@
  * @author Philipp Haussleiter
  *
  */
-package render;
+package play.modules.api;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -13,7 +13,6 @@ import play.Logger;
 import play.mvc.Http.Request;
 import play.mvc.Http.Response;
 import play.mvc.results.Result;
-import plugin.ApiPlugin;
 
 public class RenderXml extends Result {
 

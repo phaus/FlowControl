@@ -31,6 +31,7 @@ GET     /graphs/notices.svg                     Graphs.notices(format:'svg')
 *       /projects/{id}/key/add                  Projects.addApiKey
 
 GET     /project/{projectId}/errors/index       BacktraceErrors.projectIndex
+GET     /errors/show/{id}.xml                   BacktraceErrors.show(format:'xml')
 *       /errors/{action}                        BacktraceErrors.{action}
 
 # Catch all
