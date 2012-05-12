@@ -3,11 +3,11 @@
 require:
     - play
     - play -> scaffold 0.1
-    - api -> api 0.1
+    - custom -> api 0.1
 
 repositories:
     - playCustomModules:
         type:       local
-        artifact:   ${application.path}/repository/[module]
+        artifact:   ${application.path}/repository/[organisation]/[module]-[revision].zip
         contains:
-          - api -> *
+          - custom -> *
