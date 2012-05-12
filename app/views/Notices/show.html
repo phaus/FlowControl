@@ -18,6 +18,9 @@
 
     <h3>Notifier</h3>
     <p>${entity.notifier}</p>
+    #{form @Notices.update(), id:'createForm'}
+    <input type="hidden" name="entity.resolved" value="1"/>
+    <input type="hidden" name="entity.id" value="${entity?.id}"/>
     <button onclick="if (!confirm('Are you sure you want to resolved this Error?')) return false;" type="submit" class="btn btn-primary">
         <i class="icon-ok #{if entity.resolved}icon-white#{/if}">resolve</i>
     </button>
@@ -27,6 +30,7 @@
     #{else}
     <a class="btn" href="@{Notices.index()}">Back</a>
     #{/else}
+    #{/form}
 </div>
 <div class="row">
     <h3>Error</h3>
