@@ -55,6 +55,20 @@ public class Error extends Model {
         return query.getResultList();
     }
 
+    public static List<Error> findErrorsByAccountAndProject(Account currentAccount, Project project) {
+        Query query = JPA.em().createQuery("SELECT e "
+                + "FROM Notice n "
+                + "INNER JOIN n.error e "
+                + "INNER JOIN n.project p "
+                + "WHERE n.resolved = 0 "
+                + "and p = :project "
+                + "AND p IN ("
+                + "SELECT ap FROM Account a INNER JOIN a.projects ap WHERE a = :account"
+                + ") GROUP BY e.id "
+                + "ORDER by count(n.id) ASC ").setParameter("account", currentAccount).setParameter("project", project);
+        return query.getResultList();
+    }
+
     public Error getErrorReference() {
         this.hash = Codec.hexSHA1(clazz + "#" + message + "#" + backtrace);
         Error error = Error.find("hash = ?", this.hash).first();

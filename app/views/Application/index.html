@@ -12,7 +12,9 @@
         <h2>Notices <small>unresolved by Project</small></h2>
         <ul class="nav nav-tabs nav-stacked">
             #{list items:projects, as:'project'}
-            <li><a href="@{Notices.setActiveProjectId(project.id)}"><span class="right badge #{if project.getUnresolvedNotices().size() > 0}badge-important#{/if}">${project.getUnresolvedNotices().size()}</span>${project.name}</a></li>
+            #{if project.getUnresolvedNotices().size() > 0}
+            <li><a href="@{Notices.setActiveProjectId(project.id)}"><span class="right badge badge-important">${project.getUnresolvedNotices().size()}</span>${project.name}</a></li>
+            #{/if}
             #{/list}
         </ul>
         <p>

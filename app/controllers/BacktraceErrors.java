@@ -28,7 +28,8 @@ public class BacktraceErrors extends Application {
             render(entities, projects, trace, traceId);
         } else {
             Project project = Project.findById(project_id);
-            entities = project.getErrorsForAccount(currentAccount);
+            entities = Error.findErrorsByAccountAndProject(currentAccount, project);
+            //project.getErrorsForAccount(currentAccount);
 
             render(entities, projects, trace, project, traceId);
         }

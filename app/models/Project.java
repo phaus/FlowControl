@@ -71,18 +71,6 @@ public class Project extends Model {
         return query.getResultList();
     }
 
-    public List<Error> getErrorsForAccount(Account currentAccount) {
-        Query query = JPA.em().createQuery("SELECT e FROM Notice n "
-                + "INNER JOIN n.error e "
-                + "INNER JOIN n.project p "
-                + "WHERE p = :project "
-                + "AND p IN ("
-                + "SELECT ap FROM Account a INNER JOIN a.projects ap WHERE a = :account"
-                + ") GROUP BY e.id "
-                + "ORDER by count(n.id) ASC ").setParameter("account", currentAccount).setParameter("project", this);
-        return query.getResultList();
-    }
-
     public List<Notice> getResolvedNotices() {
         return getNoticesWithState(Notice.RESOLVED);
     }
