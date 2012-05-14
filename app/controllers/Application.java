@@ -37,9 +37,11 @@ public class Application extends Controller {
 
     public static void notice(Notice notice) {
         Logger.debug(notice.toString());
-        if (!Validation.current().valid(notice).ok) {
+        if (!request.headers.get("accept").value().equals("application/xml")) {
+            error("MIME Type not valid. Please use application/xml");
+        } else if(!Validation.current().valid(notice).ok) {
             Logger.info("errors: " + Validation.errors());
-            badRequest();
+            error("request not valid");
         } else {
             notice.save();
             ok();
