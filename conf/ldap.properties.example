@@ -1,0 +1,17 @@
+#LDAP Settings
+
+ldap.user.objectClasses=top, organizationalPerson, inetOrgPerson, person, posixAccount, shadowAccount, JabberAccount, ldapPublicKey
+ldap.group.objectClasses=groupOfNames, shadowAccount
+
+group.admin=Administratoren
+group.extern=Externe
+default.ldap=ldap1
+# LDAP Listsing, divided by ","
+ldap.listing=ldap1
+
+ldap1.base_dn=dc=innoq,dc=com
+ldap1.ou_people=ou=People
+ldap1.ou_group=ou=Group
+ldap1.url=ldaps://localhost:636
+ldap1.principal=cn=admin,dc=example,dc=com
+ldap1.credentials=password

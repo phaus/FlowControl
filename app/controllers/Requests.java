@@ -7,7 +7,7 @@ import play.i18n.Messages;
 import play.data.validation.Validation;
 import play.data.validation.Valid;
 
-public class Requests extends Controller {
+public class Requests extends Application {
     public static void index() {
         List<Request> entities = models.Request.all().fetch();
         render(entities);

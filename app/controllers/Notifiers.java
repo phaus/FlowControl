@@ -7,7 +7,7 @@ import play.i18n.Messages;
 import play.data.validation.Validation;
 import play.data.validation.Valid;
 
-public class Notifiers extends Controller {
+public class Notifiers extends Application {
     public static void index() {
         List<Notifier> entities = models.Notifier.all().fetch();
         render(entities);

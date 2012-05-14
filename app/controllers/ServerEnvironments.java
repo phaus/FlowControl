@@ -7,7 +7,7 @@ import play.i18n.Messages;
 import play.data.validation.Validation;
 import play.data.validation.Valid;
 
-public class ServerEnvironments extends Controller {
+public class ServerEnvironments extends Application {
     public static void index() {
         List<ServerEnvironment> entities = models.ServerEnvironment.all().fetch();
         render(entities);

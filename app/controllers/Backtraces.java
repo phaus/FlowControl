@@ -7,7 +7,7 @@ import play.i18n.Messages;
 import play.data.validation.Validation;
 import play.data.validation.Valid;
 
-public class Backtraces extends Controller {
+public class Backtraces extends Application {
     public static void index() {
         List<Backtrace> entities = models.Backtrace.all().fetch();
         render(entities);

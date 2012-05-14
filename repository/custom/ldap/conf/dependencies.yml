@@ -1,0 +1,4 @@
+self: play -> ldap 0.1
+
+require:
+    - play

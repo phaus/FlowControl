@@ -10,3 +10,4 @@ nbproject
 modules/*
 precompiled
 server.pid
+conf/ldap.properties

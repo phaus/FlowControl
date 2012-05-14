@@ -60,7 +60,7 @@ public class Account extends Model {
         this.created_at = new Date();
     }
 
-    public static Account findOrCreateByUid(String uid) {
+    public static Account findOrCreate(String uid, String email) {
         String key = "account_" + uid;
         Account account = Cache.get(key, Account.class);
         if (account == null) {
@@ -68,6 +68,7 @@ public class Account extends Model {
         }
         if (account == null) {
             account = new Account(uid);
+            account.email = email;
             account.clearPassword = Codec.UUID().replace("-", "").substring(0, 8);
             account.setPassword(account.clearPassword);
             account.save();

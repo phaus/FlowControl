@@ -8,6 +8,9 @@ import models.Project;
 import play.Logger;
 import play.Play;
 import play.libs.IO;
+import play.modules.ldap.LdapGroup;
+import play.modules.ldap.LdapHelper;
+import play.modules.ldap.LdapUser;
 import play.mvc.Before;
 import play.mvc.Controller;
 
@@ -20,7 +23,15 @@ public class Application extends Controller {
 
     @Before
     public static void before() {
-        Application.currentAccount = Account.findOrCreateByUid(defaultUser);
+        if (request.user == null) {
+            unauthorized("LiQID");
+        }
+        if (!LdapHelper.getInstance().checkCredentials(request.user, request.password)) {
+            unauthorized("LiQID");
+        }
+        String uid = request.user != null ? request.user : "gast";
+        LdapUser user = (LdapUser) LdapHelper.getInstance().getUser(uid);
+        Application.currentAccount = Account.findOrCreate(user.getUid(), user.get("mail"));
     }
 
     public static void index() {

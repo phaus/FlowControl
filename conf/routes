@@ -2,37 +2,39 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+%{ context = play.configuration.getProperty('context', '') }%
+
 # Home page
-GET     /                                       Application.index
-GET     /form                                   Application.form
-POST    /notifier_api/v2/notices                Api.notices
+GET     ${context}                                        Application.index
+GET     ${context}/                                        Application.index
+POST    ${context}/notifier_api/v2/notices                Api.notices
 
 # Ignore favicon requests
-GET     /favicon.ico                            404
+GET     ${context}/favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
-GET     /public/                                staticDir:public
-GET     /assets/                                staticDir:public
+GET     ${context}/public/                                staticDir:public
+GET     ${context}/assets/                                staticDir:public
 
-GET     /notices/resolved/{resolved}            Notices.setResolved
+GET     ${context}/notices/resolved/{resolved}            Notices.setResolved
 
-GET     /notices/{id}/show                      Notices.show()
-GET     /projects/{id}/show                     Projects.show()
-GET     /accounts/{id}/show                     Accounts.show()
+GET     ${context}/notices/{id}/show                      Notices.show()
+GET     ${context}/projects/{id}/show                     Projects.show()
+GET     ${context}/accounts/{id}/show                     Accounts.show()
 
 
 
-GET     /feeds/index.xml                        Feeds.index(format:'xml')
-GET     /feeds/show/{apiKey}.xml                Feeds.show(format:'xml')
-GET     /graphs/notices.svg                     Graphs.notices(format:'svg')
+GET     ${context}/feeds/index.xml                        Feeds.index(format:'xml')
+GET     ${context}/feeds/show/{apiKey}.xml                Feeds.show(format:'xml')
+GET     ${context}/graphs/notices.svg                     Graphs.notices(format:'svg')
 
 # TODO add correct REST Method here
-*       /projects/{id}/key/remove               Projects.remApiKey
-*       /projects/{id}/key/add                  Projects.addApiKey
+*       ${context}/projects/{id}/key/remove               Projects.remApiKey
+*       ${context}/projects/{id}/key/add                  Projects.addApiKey
 
-GET     /project/{projectId}/errors/index       BacktraceErrors.projectIndex
-GET     /errors/show/{id}.xml                   BacktraceErrors.show(format:'xml')
-*       /errors/{action}                        BacktraceErrors.{action}
+GET     ${context}/project/{projectId}/errors/index       BacktraceErrors.projectIndex
+GET     ${context}/errors/show/{id}.xml                   BacktraceErrors.show(format:'xml')
+*       ${context}/errors/{action}                        BacktraceErrors.{action}
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+*       ${context}/{controller}/{action}                  {controller}.{action}
