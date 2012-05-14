@@ -36,13 +36,14 @@ public class Application extends Controller {
     }
 
     public static void notice(Notice notice) {
-        Logger.debug(notice.toString());
-        if (!request.headers.get("accept").value().equals("application/xml")) {
-            error("MIME Type not valid. Please use application/xml");
+        if (request.headers.get("Content-Type") == null
+                || !request.headers.get("Content-Type").value().startsWith("application/xml")) {
+            error("MIME Type not valid. Please use 'application/xml' ");
         } else if(!Validation.current().valid(notice).ok) {
             Logger.info("errors: " + Validation.errors());
             error("request not valid");
         } else {
+            Logger.debug(notice.toString());
             notice.save();
             ok();
         }
