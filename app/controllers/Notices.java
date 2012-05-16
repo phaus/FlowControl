@@ -45,7 +45,7 @@ public class Notices extends Application {
     public static void delete(java.lang.Long id) {
         Notice entity = Notice.findById(id);
         entity.delete();
-        index();
+        Notices.index();
     }
 
     public static void save(@Valid Notice entity) {
@@ -55,7 +55,7 @@ public class Notices extends Application {
         }
         entity.save();
         flash.success(Messages.get("scaffold.created", "Notice"));
-        index();
+        Notices.index();
     }
 
     public static void update(@Valid Notice entity) {
@@ -68,7 +68,7 @@ public class Notices extends Application {
 
         entity.save();
         flash.success(Messages.get("scaffold.updated", "Notice"));
-        index();
+        Notices.index();
     }
 
     private static Long getActiveProjectId() {
@@ -82,7 +82,7 @@ public class Notices extends Application {
         }else{
             Cache.set(session.getId() + "-activeProjectId", activeProjectId, "24h");
         }
-        index();
+        Notices.index();
     }
 
     private static Integer getResolved() {
@@ -95,7 +95,7 @@ public class Notices extends Application {
 
     public static void setResolved(Integer resolved) {
         Cache.set(session.getId() + "-resolved", resolved, "24h");
-        index();
+        Notices.index();
     }
 
     // TODO there might be a better way to do this.

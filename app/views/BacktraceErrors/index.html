@@ -27,7 +27,7 @@
                     <td>${entity.clazz}</td>
                     <td>${entity.message}</td>
                     <td>
-                        <span class="badge #{if entity.getUnresolvedNotices().size() > 1}badge-important#{/if}">${entity.getUnresolvedNotices().size()}</span>
+                        <span class="badge #{if entity.getUnresolvedNotices(account).size() > 1}badge-important#{/if}">${entity.getUnresolvedNotices(account).size()}</span>
                     </td>
                     #{if traceId && entity.backtrace.id == traceId}
                     <td><a class="btn" href="@{BacktraceErrors.index()}"><i title="hide Backtrace" class="icon-minus">hide</i></a></td>

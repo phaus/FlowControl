@@ -79,18 +79,21 @@ public class Error extends Model {
         }
     }
 
-    public List<Notice> getResolvedNotices() {
-        return getNoticesWithState(Notice.RESOLVED);
+    public List<Notice> getResolvedNotices(Account currentAccount) {
+        return getNoticesWithState(currentAccount, Notice.RESOLVED);
     }
 
-    public List<Notice> getUnresolvedNotices() {
-        return getNoticesWithState(Notice.UNRESOLVED);
+    public List<Notice> getUnresolvedNotices(Account currentAccount) {
+        return getNoticesWithState(currentAccount, Notice.UNRESOLVED);
     }
 
-    public List<Notice> getNoticesWithState(int resolved) {
+    public List<Notice> getNoticesWithState(Account currentAccount, int resolved) {
         String queryString = "SELECT n "
                 + "FROM Notice n "
-                + "WHERE n.error = :error ";
+                + "INNER JOIN n.project p "
+                + "WHERE  p IN ("
+                + "SELECT ap FROM Account a INNER JOIN a.projects ap WHERE a = :account"
+                + ")";
         switch (resolved) {
             case Notice.RESOLVED:
                 queryString += "AND n.resolved = 1 ";
@@ -100,8 +103,22 @@ public class Error extends Model {
                 break;
             default:
         }
+        queryString += "AND n.error = :error ";
         queryString += "ORDER BY n.created_at DESC";
-        Query query = JPA.em().createQuery(queryString).setParameter("error", this);
+        Query query = JPA.em().createQuery(queryString).setParameter("account", currentAccount).setParameter("error", this);
+        return query.getResultList();
+    }
+
+    public List<Notice> getNotices(Account currentAccount) {
+        String queryString = "SELECT n "
+                + "FROM Notice n "
+                + "INNER JOIN n.project p "
+                + "WHERE p IN ("
+                + "SELECT ap FROM Account a INNER JOIN a.projects ap WHERE a = :account"
+                + ") "
+                + "AND n.error = :error ";
+        queryString += "ORDER BY n.created_at DESC";
+        Query query = JPA.em().createQuery(queryString).setParameter("account", currentAccount).setParameter("error", this);
         return query.getResultList();
     }
 

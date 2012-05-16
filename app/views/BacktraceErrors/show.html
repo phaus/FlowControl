@@ -16,7 +16,7 @@
         <div class="well sidebar-nav">
             <ul class="nav nav-list">
                 <li class="nav-header">Notices</li>
-                #{list items:entity.notices, as:'n'}
+                #{list items:entity.getNotices(account), as:'n'}
                 <li #{if n.resolved } class="struck" #{/if}><a href="@{Notices.show(n.id)}">#${n.id} for ${n?.project.name}</a></li>
                 #{/list}
             </ul>

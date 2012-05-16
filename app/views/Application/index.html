@@ -25,7 +25,7 @@
         <h2>Errors</h2>
         <ul class="nav nav-tabs nav-stacked">
             #{list items:errorList, as:'e'}
-            <li><a href="@{BacktraceErrors.show(e.id)}"><span class="right badge #{if e.getUnresolvedNotices().size() > 1}badge-important#{/if}">${e.getUnresolvedNotices().size()}</span>${e}</a></li>
+            <li><a href="@{BacktraceErrors.show(e.id)}"><span class="right badge #{if e.getUnresolvedNotices(account).size() > 1}badge-important#{/if}">${e.getUnresolvedNotices(account).size()}</span>${e}</a></li>
             #{/list}
         </ul>
         <p>

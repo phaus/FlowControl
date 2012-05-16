@@ -8,7 +8,6 @@ import models.Project;
 import play.Logger;
 import play.Play;
 import play.libs.IO;
-import play.modules.ldap.LdapGroup;
 import play.modules.ldap.LdapHelper;
 import play.modules.ldap.LdapUser;
 import play.mvc.Before;
@@ -37,7 +36,8 @@ public class Application extends Controller {
     public static void index() {
         List<Error> errorList = Error.findErrorsByAccount(currentAccount);
         List<Project> projects = currentAccount.getProjects();
-        render(projects, errorList);
+        Account account = currentAccount;
+        render(projects, errorList, account);
     }
 
     public static void about() {

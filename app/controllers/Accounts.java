@@ -8,6 +8,7 @@ import play.data.validation.Validation;
 import play.data.validation.Valid;
 
 public class Accounts extends Controller {
+
     public static void index() {
         List<Account> entities = models.Account.all().fetch();
         render(entities);
@@ -30,9 +31,9 @@ public class Accounts extends Controller {
     public static void delete(java.lang.Long id) {
         Account entity = Account.findById(id);
         entity.delete();
-        index();
+        Accounts.index();
     }
-    
+
     public static void save(@Valid Account entity) {
         if (validation.hasErrors()) {
             flash.error(Messages.get("scaffold.validation"));
@@ -40,7 +41,7 @@ public class Accounts extends Controller {
         }
         entity.save();
         flash.success(Messages.get("scaffold.created", "Account"));
-        index();
+        Accounts.index();
     }
 
     public static void update(@Valid Account entity) {
@@ -48,11 +49,11 @@ public class Accounts extends Controller {
             flash.error(Messages.get("scaffold.validation"));
             render("@edit", entity);
         }
-        
-              entity = entity.merge();
-        
+
+        entity = entity.merge();
+
         entity.save();
         flash.success(Messages.get("scaffold.updated", "Account"));
-        index();
+        Accounts.index();
     }
 }

@@ -1,6 +1,6 @@
 package controllers;
 
-import play.Logger;
+import models.Account;
 import java.util.List;
 import models.Backtrace;
 import models.Error;
@@ -14,24 +14,24 @@ import static play.modules.api.RenderXml.*;
 public class BacktraceErrors extends Application {
 
     public static void index() {
-        Logger.info("BacktraceErrors->index" + request.format);
         Long project_id = getActiveProjectId();
         Long traceId = params.get("trace_id", Long.class);
         Backtrace trace = null;
         List<Project> projects = currentAccount.getProjects();
         List<Error> entities;
+        Account account = currentAccount;
         if (traceId != null) {
             trace = Backtrace.findById(traceId);
         }
         if (project_id == null) {
             entities = Error.findErrorsByAccount(currentAccount);
-            render(entities, projects, trace, traceId);
+            render(entities, projects, trace, traceId, account);
         } else {
             Project project = Project.findById(project_id);
             entities = Error.findErrorsByAccountAndProject(currentAccount, project);
             //project.getErrorsForAccount(currentAccount);
 
-            render(entities, projects, trace, project, traceId);
+            render(entities, projects, trace, project, traceId, account);
         }
     }
 
@@ -41,10 +41,11 @@ public class BacktraceErrors extends Application {
 
     public static void show(java.lang.Long id) {
         Error entity = Error.findById(id);
-        if("xml".equals(request.format)){
+        Account account = currentAccount;
+        if ("xml".equals(request.format)) {
             renderXML(entity);
-        }else{
-            render(entity);
+        } else {
+            render(entity, account);
         }
     }
 
