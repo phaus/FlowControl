@@ -7,13 +7,13 @@
 package play.modules.ldap;
 
 import com.google.gson.JsonObject;
+import com.innoq.ldap.connector.LdapHelper;
 import com.innoq.liqid.model.Node;
 import com.innoq.liqid.utils.Configuration;
 import java.util.Set;
 import play.Logger;
 import play.Play;
 import play.PlayPlugin;
-import play.modules.ldap.LdapHelper;
 
 public class LdapPlugin extends PlayPlugin {
 
@@ -32,6 +32,7 @@ public class LdapPlugin extends PlayPlugin {
 
     @Override
     public String getStatus() {
+        LdapHelper instance;
         String output = "\nLDAP Plugin:";
         output +=       "\n~~~~~~~~~~~~";
         output +=       "\nldap.user.objectClasses:\n\t "+Configuration.getProperty("ldap.user.objectClasses").replace(",", ",\n\t")+"\n";
@@ -58,6 +59,13 @@ public class LdapPlugin extends PlayPlugin {
             if (groups != null) {
                 output += "\n\tGroups: " + groups.size();
             }
+            output += "\n\tADDs/REMs/MODs: "+ LdapHelper.getInstance(ldap).getCreationCount();
+            output +="/";
+            output += LdapHelper.getInstance(ldap).getDeletionCount();
+            output +="/";
+            output += LdapHelper.getInstance(ldap).getModificationCount();
+            output += "\n\tVALs: "+ LdapHelper.getInstance(ldap).getValidationCount();
+            output += "\n\tQRYs: "+ LdapHelper.getInstance(ldap).getQueryCount();
             i++;
             output += "\n";
         }
