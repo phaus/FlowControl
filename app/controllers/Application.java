@@ -1,5 +1,7 @@
 package controllers;
 
+import com.innoq.ldap.connector.LdapHelper;
+import com.innoq.ldap.connector.LdapUser;
 import java.io.File;
 import java.util.List;
 import models.Account;
@@ -8,10 +10,9 @@ import models.Project;
 import play.Logger;
 import play.Play;
 import play.libs.IO;
-import play.modules.ldap.LdapHelper;
-import play.modules.ldap.LdapUser;
 import play.mvc.Before;
 import play.mvc.Controller;
+import play.mvc.Http.Header;
 
 public class Application extends Controller {
 
@@ -21,7 +22,23 @@ public class Application extends Controller {
     public static Account currentAccount;
 
     @Before
-    public static void before() {
+    public static void debugRequest(){
+        StringBuilder sb = new StringBuilder("\n");
+        Header h;
+        sb.append("url: ").append(request.url).append("\n");
+        sb.append("host: ").append(request.host).append("\n");
+        if(request.secure){
+            sb.append("secure Request\n");
+        }
+        for( String key : request.headers.keySet()){
+            h = request.headers.get(key);
+            sb.append("\t").append(key).append(":").append(h.toString()).append("\n");
+        }
+        Logger.info("headers: "+sb.toString());
+    }
+
+    @Before
+    public static void login() {
         if (request.user == null) {
             unauthorized("LiQID");
         }
@@ -41,7 +58,8 @@ public class Application extends Controller {
     }
 
     public static void about() {
-        render();
+        boolean secure = request.secure;
+        render(secure);
     }
 
     public static String loadExample(String example) {
