@@ -34,7 +34,7 @@ public class Application extends Controller {
             h = request.headers.get(key);
             sb.append("\t").append(key).append(":").append(h.toString()).append("\n");
         }
-        Logger.info("headers: "+sb.toString());
+        Logger.debug("headers: "+sb.toString());
     }
 
     @Before
