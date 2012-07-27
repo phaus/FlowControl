@@ -17,11 +17,6 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreRemove;
 import javax.persistence.Query;
 import javax.persistence.Transient;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import play.cache.Cache;
 import play.data.binding.As;
 import play.data.validation.Email;
@@ -32,26 +27,18 @@ import play.libs.Codec;
 import play.libs.Crypto;
 
 @Entity
-@XmlRootElement(name = "account")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Account extends Model {
 
     @Required
-    @XmlElement
     public String uid;
     @Email
-    @XmlElement
     public String email;
     @Required
-    @XmlTransient
     public String password;
     @ManyToMany
-    @XmlElement
     public List<Project> projects;
     @As(lang = {"*"}, value = {"yyyy-MM-dd hh:mm:ss"})
-    @XmlElement
     public Date created_at;
-    @XmlTransient
     @Transient
     public String clearPassword = null;
 

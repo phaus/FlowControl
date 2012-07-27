@@ -7,7 +7,6 @@ import models.Notice;
 import models.Project;
 import play.cache.Cache;
 import play.i18n.Messages;
-import play.data.validation.Validation;
 import play.data.validation.Valid;
 
 public class Notices extends Application {

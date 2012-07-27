@@ -12,18 +12,20 @@ import play.data.validation.Validation;
 import play.mvc.Controller;
 import play.mvc.Http.Header;
 import play.mvc.Http.Request;
+import static play.modules.api.RenderXml.*;
 
 public class Api extends Controller {
 
-    public static void notices(Notice notice) {
+    public static void notices(generated.Notice noticeMessage) {
+        Notice notice = new Notice(noticeMessage);
         if (!isContentXML(request)) {
             error("MIME Type not valid. Please use 'application/xml' ");
-        } else if (!Validation.current().valid(notice).ok) {
+        } else if (!Validation.current().valid(noticeMessage).ok) {
             Logger.info("errors: " + Validation.errors());
             error("request not valid");
         } else {
             notice.save();
-            ok();
+            renderXML(noticeMessage);
         }
     }
 

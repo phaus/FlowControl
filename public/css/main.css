@@ -1,3 +1,6 @@
+body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
 .right {
     float:right;
 }
@@ -11,4 +14,11 @@ li.L0, li.L1, li.L2, li.L3, li.L4, li.L5, li.L6, li.L7, li.L8, li.L9 {
 
 .struck {
     text-decoration: line-through;
+}
+
+.varList {
+    word-wrap: break-word;
+}
+.varListContent {
+    width: 600px;
 }

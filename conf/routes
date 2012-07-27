@@ -5,8 +5,7 @@
 %{ context = play.configuration.getProperty('context', '') }%
 
 # Home page
-GET     ${context}                                        Application.index
-GET     ${context}/                                        Application.index
+GET     ${context}/?                                      Application.index
 POST    ${context}/notifier_api/v2/notices                Api.notices
 
 # Ignore favicon requests

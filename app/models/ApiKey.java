@@ -10,10 +10,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PreRemove;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import play.Logger;
 import play.cache.Cache;
 import play.data.validation.Required;
@@ -21,13 +17,10 @@ import play.db.jpa.Model;
 import play.libs.Codec;
 
 @Entity
-@XmlRootElement(name = "api-key")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class ApiKey extends Model {
 
     @Column(unique = true)
     @Required
-    @XmlElement
     public String apiKey;
 
     public ApiKey() {
@@ -45,7 +38,7 @@ public class ApiKey extends Model {
         if (apiKey == null) {
             apiKey = ApiKey.find("apikey = ?", apikey).first();
             if (apiKey != null) {
-                Logger.debug("founct apikey with: " + apikey);
+                Logger.debug("found apikey with: " + apikey);
                 Cache.set(key, apiKey, "30d");
             }
         }

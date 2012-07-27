@@ -28,10 +28,6 @@ Account(user):
     password: user
     projects: [flowcontrol, example]
 
-ServerEnvironment(env1):
-    projectRoot: null
-    environmentName: env
-
 Notifier(notifier1):
     name: hoptoad
     version: 1.7-socrata-SNAPSHOT

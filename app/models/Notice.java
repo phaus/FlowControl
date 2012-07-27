@@ -15,12 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import play.Logger;
 import play.data.binding.As;
 import play.data.validation.Check;
@@ -29,45 +23,32 @@ import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
-@XmlRootElement(name = "notice")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Notice extends Model implements CycleRecoverable {
 
     public final static int ALL = 0;
     public final static int RESOLVED = 1;
     public final static int UNRESOLVED = 2;
-    
     private final static SimpleDateFormat FORMATTER = new SimpleDateFormat("dd MMM yyyy HH:mm:ss Z");
     @Required
-    @XmlAttribute
     public String version;
     @As(lang = {"*"}, value = {"yyyy-MM-dd hh:mm:ss"})
-    @XmlElement
     public Date created_at;
     @As(lang = {"*"}, value = {"yyyy-MM-dd hh:mm:ss"})
-    @XmlElement
     public Date updated_at;
-    @XmlElement(name = "api-key")
     @Required
     @CheckWith(ApiKeyCheck.class)
     public String apiKey;
     @OneToOne(cascade = CascadeType.REMOVE)
-    @XmlElement
     public Request request;
     @ManyToOne
-    @XmlElement
     public Notifier notifier;
     @OneToOne(cascade = CascadeType.REMOVE)
-    @XmlElement
     @ManyToOne
     public Error error;
     @ManyToOne
-    @XmlElement(name = "server-environment")
     public ServerEnvironment environment;
     @ManyToOne
-    @XmlTransient
     public Project project;
-    @XmlTransient
     public boolean resolved;
 
     @PrePersist
@@ -76,8 +57,6 @@ public class Notice extends Model implements CycleRecoverable {
             this.created_at = new Date();
             this.updated_at = new Date();
             this.project = Project.findByApiKey(this.apiKey);
-            this.notifier = Notifier.getOrCreate(notifier.name, notifier.version, notifier.url);
-            this.environment = ServerEnvironment.getOrCreate(environment.projectRoot, environment.environmentName, environment.appVersion, environment.hostname);
             if (this.request != null) {
                 this.request.save();
             }
@@ -90,6 +69,25 @@ public class Notice extends Model implements CycleRecoverable {
         this.updated_at = new Date();
     }
 
+    public Notice(generated.Notice notice) {
+        this.version = notice.getVersion();
+        this.apiKey = notice.getApiKey();
+        if (notice.getNotifier() != null) {
+            this.notifier = Notifier.getOrCreate(notice.getNotifier());
+        }
+        if (notice.getError() != null) {
+            this.error = new Error(notice.getError());
+        }
+        if(notice.getRequest() != null){
+            this.request = new Request(notice.getRequest());
+        }
+        if(notice.getServerEnvironment() != null){
+            this.environment = ServerEnvironment.getOrCreate(notice.getServerEnvironment());
+            Logger.info("found: "+this.environment);
+        }
+
+    }
+
     public String getPublished() {
         return FORMATTER.format(created_at);
     }
@@ -100,7 +98,7 @@ public class Notice extends Model implements CycleRecoverable {
 
     @Override
     public String toString() {
-        return "notice for " + project + ":" + id + ":" + created_at;
+        return error.toString();
     }
 
     public Object onCycleDetected(Context cntxt) {
@@ -109,6 +107,7 @@ public class Notice extends Model implements CycleRecoverable {
     }
 
     public static class ApiKeyCheck extends Check {
+
         public boolean isSatisfied(Object notice, Object apiKey) {
             if (ApiKey.findByApiKey(apiKey.toString()) != null) {
                 Logger.debug(apiKey + "is valid");

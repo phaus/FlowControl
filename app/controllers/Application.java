@@ -40,10 +40,10 @@ public class Application extends Controller {
     @Before
     public static void login() {
         if (request.user == null) {
-            unauthorized("LiQID");
+            unauthorized("FlowControl");
         }
         if (!LdapHelper.getInstance().checkCredentials(request.user, request.password)) {
-            unauthorized("LiQID");
+            unauthorized("FlowControl");
         }
         String uid = request.user != null ? request.user : "gast";
         LdapUser user = (LdapUser) LdapHelper.getInstance().getUser(uid);

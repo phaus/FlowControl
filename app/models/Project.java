@@ -15,11 +15,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreRemove;
 import javax.persistence.Query;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import play.cache.Cache;
 import play.data.binding.As;
 import play.data.validation.URL;
@@ -27,23 +22,16 @@ import play.db.jpa.JPA;
 import play.db.jpa.Model;
 
 @Entity
-@XmlRootElement(name = "project")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Project extends Model {
 
-    @XmlElement
     @Column(unique = true)
     public String name;
     @URL
-    @XmlElement
     public String url;
     @As(lang = {"*"}, value = {"yyyy-MM-dd hh:mm:ss"})
-    @XmlElement
     public Date created_at;
     @OneToOne
-    @XmlElement
     public ApiKey apiKey;
-    @XmlTransient
     @OneToMany(mappedBy = "project")
     public List<Notice> notices;
 

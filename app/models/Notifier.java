@@ -7,34 +7,22 @@
 package models;
 
 import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import play.cache.Cache;
 import play.data.validation.Required;
 import play.data.validation.URL;
 import play.db.jpa.Model;
 
 @Entity
-@XmlRootElement(name = "notifier")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Notifier extends Model {
 
     @Required
-    @XmlElement
     public String name;
     @Required
-    @XmlElement
     public String version;
     @URL
-    @XmlElement
     public String url;
-    @XmlTransient
     @OneToMany(mappedBy = "notifier")
     public List<Notice> notices;
 
@@ -42,6 +30,10 @@ public class Notifier extends Model {
         this.name = name;
         this.version = version;
         this.url = url;
+    }
+
+    public static Notifier getOrCreate(generated.Notifier notifier){
+        return getOrCreate(notifier.getName(), notifier.getVersion(), notifier.getUrl());
     }
 
     public static Notifier getOrCreate(String name, String version, String url) {

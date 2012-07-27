@@ -1,23 +1,19 @@
 #{extends 'main.html' /}
 <div class="hero-unit">
     <h2>Notice</h2>
+    <dl class="dl-horizontal">
+        <dt>Created</dt>
+        <dd>${entity.created_at}</dd>
+        <dt>Project</dt>
+        <dd><a href="@{Projects.show(entity.project.id)}">${entity.project.name}</a></dd>
+        <dt>Api-Key</dt>
+        <dd>${entity.apiKey}</dd>
+        <dt>Environment</dt>
+        <dd>${entity.environment}</dd>
+        <dt>Notifier</dt>
+        <dd>${entity.notifier}</dd>
+    </dl>
 
-    <h3>Created</h3>
-    <p>${entity.created_at}</p>
-
-    <h3>Api-Key</h3>
-    <p>${entity.apiKey}</p>
-
-    <h3>Environment</h3>
-    <p>${entity.environment}</p>
-
-    #{if entity.request}
-    <h3>Request</h3>
-    <p>${entity.request.summarize().raw()}</p>
-    #{/if}
-
-    <h3>Notifier</h3>
-    <p>${entity.notifier}</p>
     #{form @Notices.update(), id:'createForm'}
     <input type="hidden" name="entity.resolved" value="1"/>
     <input type="hidden" name="entity.id" value="${entity?.id}"/>
@@ -31,6 +27,28 @@
     <a class="btn" href="@{Notices.index()}">Back</a>
     #{/else}
     #{/form}
+</div>
+<div class="row">
+    <div class="span10">
+        #{if entity.request}
+        <h3>Request</h3>
+        <dl class="dl-horizontal">
+            <dt>Url</dt>
+            <dd>${entity.request.url}</dd>
+            #{if entity.request.component}
+            <dt>Component</dt>
+            <dd>${entity.request.component}</dd>
+            #{/if}
+            #{if entity.request.action}
+            <dt>Action</dt>
+            <dd>${entity.request.action}</dd>
+            #{/if}
+            #{varList list:entity.request.params, name:'Params' /}
+            #{varList list:entity.request.session, name:'Session' /}
+            #{varList list:entity.request.cgiData, name:'CGI-Data' /}
+        </dl>
+        #{/if}
+    </div>
 </div>
 <div class="row">
     <h3>Error</h3>

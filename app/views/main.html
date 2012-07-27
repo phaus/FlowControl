@@ -15,12 +15,6 @@
         <link rel="shortcut icon" type="image/png" href="@{'/public/img/favicon.png'}">
         <!-- Atom Feeds for your Projects -->
         <link href="@@{Feeds.index()}.xml" type="application/atom+xml" rel="alternate" title="All Notices" />
-        <style type="text/css" >
-            body {
-                padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-            }
-        </style>
-
         #{get 'moreScripts' /}
     </head>
     <body>

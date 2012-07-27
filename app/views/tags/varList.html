@@ -1,0 +1,29 @@
+#{if _list != null && _list.var?.size() > 0}
+<dt>${_name}</dt>
+<dd>
+    <table class="varList table">
+        <thead>
+            <tr>
+                <th>KEY</th>
+                <th>VALUE</th>
+            </tr>
+        </thead>
+        <tbody>
+            #{list items:_list.var, as: 'v'}
+            <tr>
+                <td>${v.key}</td>
+                <td>
+                    <div class="varListContent">
+                        <ul>
+                            #{list items: v.getContentAsList(), as: 'c'}
+                            <li>${c}</li>
+                            #{/list}
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            #{/list}
+        </tbody>
+    </table>
+</dd>
+#{/if}

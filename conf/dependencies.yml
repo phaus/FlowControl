@@ -1,7 +1,7 @@
 # Application dependencies
 
 require:
-    - play 1.2.4
+    - play 1.2.5
     - play -> scaffold 0.1
     - custom -> api 0.1
     - custom -> ldap 0.1

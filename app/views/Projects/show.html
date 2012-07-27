@@ -4,26 +4,20 @@
         <div class="row">
             <div class="hero-unit">
                 <h2>Project ${project.name}</h2>
-                <h3>Homepage</h3>
-                <p>
-                    <a target="_new" href="${project.url}">${project.url}</a>
-                </p>
-
-                <h3>Created</h3>
-                <p>
-                    ${project.created_at}
-                </p>
-
-                <h3>Api-Key</h3>
-                <p>
-                    #{if project.apiKey}
-                    ${project.apiKey}
-                    <a class="btn" href="@{Projects.removeApiKey(project.id)}" onclick="if (!confirm('Are you sure you want to delete this record?\n* all Noticfication for this key will be deleted,\n* all Projects will be disconnected!')) return false;"><i class="icon-minus-sign"></i></a>
-                    #{/if}
-                    #{else}
-                    <a class="btn" href="@{Projects.addApiKey(project.id)}"><i class="icon-plus-sign"></i></a>
-                    #{/else}
-                </p>
+                <dl class="dl-horizontal">
+                    <dt>Homepage</dt><dd><a target="_new" href="${project.url}">${project.url}</a></dd>
+                    <dt>Created</dt><dd>${project.created_at}</dd>
+                    <dt>Api-Key</dt>
+                    <dd>
+                        #{if project.apiKey}
+                        ${project.apiKey}
+                        <a class="btn" href="@{Projects.removeApiKey(project.id)}" onclick="if (!confirm('Are you sure you want to delete this record?\n* all Noticfication for this key will be deleted,\n* all Projects will be disconnected!')) return false;"><i class="icon-minus-sign"></i></a>
+                        #{/if}
+                        #{else}
+                        <a class="btn" href="@{Projects.addApiKey(project.id)}"><i class="icon-plus-sign"></i></a>
+                        #{/else}
+                    </dd>
+                </dl>
                 <p>
                     <a class="btn btn-primary" href="@{Projects.index}">Back</a>
                 </p>

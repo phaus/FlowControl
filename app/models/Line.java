@@ -10,40 +10,34 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import play.data.validation.Required;
 import play.db.jpa.Model;
 import play.libs.Codec;
 
 @Entity
-@XmlRootElement(name = "line")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Line extends Model {
 
-    @XmlAttribute
     @Lob
     public String method = "";
     @Required
-    @XmlAttribute
     @Lob
     public String file;
     @Required
-    @XmlAttribute
-    public int number;
-    @XmlTransient
+    public String number;
     public String hash;
     @ManyToOne
-    @XmlTransient
     public Backtrace backtrace;
 
-    public Line(String file, String method, int number) {
+    public Line(String file, String method, String number) {
         this.method = method;
         this.file = file;
         this.number = number;
+    }
+
+    public Line(generated.Backtrace.Line line) {
+        this.method = line.getMethod();
+        this.number = line.getNumber();
+        this.file = line.getFile();
     }
 
     @Override
