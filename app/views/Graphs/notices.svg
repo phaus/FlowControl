@@ -10,39 +10,42 @@
     <!-- ${notice = '#DFF0D8'}-->
     <!-- legend -->
     #{list items:0..max, as:'i'}${i}
-    <text x="15" y="${height-ypart*i+20}" style="font-size:16px">
+    #{if i%3 == 0}
+    <line x1="0" y1="${height-ypart*i}" x2="${width+50}" y2="${height-ypart*i}" style="stroke:#bdbdbd;stroke-width:0.5"/>
+    <text x="15" y="${height-ypart*i+15}" style="font-size:14px">
     ${i}
     </text>
+    #{/if}
     #{/list}
     <line x1="35" y1="0" x2="35" y2="${height+50}" style="stroke:#000;stroke-width:0.5"/>
-    #{list items:0..(max-1), as:'i'}${i}
-    <line x1="0" y1="${height-ypart*i}" x2="${width+50}" y2="${height-ypart*i}" style="stroke:#000;stroke-width:0.5"/>
-    #{/list}
+    <line x1="0" y1="${height}" x2="${width+50}" y2="${height}" style="stroke:#000;stroke-width:0.5"/>
     <!-- unresolved Entries -->
     <!-- ${c = init} -->
     #{list items:openEntries.keySet(), as:'key'}
     <!-- ${c = c + xpart} -->
     #{if openEntries.get(key) > 0}
-    <rect title="${openEntries.get(key)}" x="${c+gap+xpart/2-2}" y="${height - openEntries.get(key)*ypart}" width="${xpart/2}" height="${openEntries.get(key)*ypart}" fill="${error}" stroke="#000" id="ur-${key}"  />
+    <rect title="${openEntries.get(key)}" x="${c+gap+xpart}" y="${height - openEntries.get(key)*ypart}" width="${xpart-1}" height="${openEntries.get(key)*ypart}" fill="${error}" stroke="#000" id="ur-${key}"  />
     #{/if}
+    #{if i++ % 2 == 0}
     <text x="${c+gap}" y="${height + 20}" style="font-size:18px">
     ${key.format('00')}
     </text>
+    #{/if}
     #{/list}
     <!-- resolved Entries -->
     <!-- ${c = init} -->
     #{list items:resolvedEntries.keySet(), as:'key'}
     <!-- ${c = c + xpart} -->
     #{if resolvedEntries.get(key) > 0}
-    <rect title="${resolvedEntries.get(key)}" x="${c+gap-2}" y="${height - resolvedEntries.get(key)*ypart}" width="${xpart/2}" height="${resolvedEntries.get(key)*ypart}" fill="${notice}" stroke="#000" id="r-${key}"  />
+    <rect title="${resolvedEntries.get(key)}" x="${c+gap+xpart}" y="${height - resolvedEntries.get(key)*ypart}" width="${xpart-1}" height="${resolvedEntries.get(key)*ypart}" fill="${notice}" stroke="#000" id="r-${key}"  />
     #{/if}
     #{/list}
-    <rect title="unresolved" x="${width-35}" y="${height+30}" width="85" height="20" fill="${error}" stroke="#000" id="unresolved" />
-    <text x="${width-30}" y="${height+45}" style="font-size:16px;fill: #FFF">
-    unresolved
-    </text>
-    <rect title="resolved" x="${width-120}" y="${height+30}" width="75" height="20" fill="${notice}" stroke="#000" id="resolved" />
-    <text x="${width-115}" y="${height+45}" style="font-size:16px;fill: #000">
+    <rect title="unresolved" x="${width-35}" y="${height+30}" width="85" height="20" fill="${notice}" id="resolved" />
+    <text x="${width-20}" y="${height+45}" style="font-size:16px;fill: #000">
     resolved
+    </text>
+    <rect title="resolved" x="${width-120}" y="${height+30}" width="75" height="20" fill="${error}" id="unresolved" />
+    <text x="${width-117}" y="${height+45}" style="font-size:16px;fill: #fff">
+    unresolved
     </text>
 </svg>

@@ -109,7 +109,7 @@ public class Account extends Model {
                 queryString += "AND n.resolved = 1 ";
                 break;
             case Notice.UNRESOLVED:
-                queryString += "AND n.resolved = 0 ";
+                //queryString += "AND n.resolved = 0 ";
                 break;
             default:
         }

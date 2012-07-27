@@ -69,16 +69,16 @@ public class Notices extends Application {
         flash.success(Messages.get("scaffold.updated", "Notice"));
         Notices.index();
     }
-
+    
     private static Long getActiveProjectId() {
         Long activeProjectId = Cache.get(session.getId() + "-activeProjectId", Long.class);
         return activeProjectId;
     }
 
     public static void setActiveProjectId(Long activeProjectId) {
-        if(activeProjectId == 0){
+        if (activeProjectId == 0) {
             Cache.delete(session.getId() + "-activeProjectId");
-        }else{
+        } else {
             Cache.set(session.getId() + "-activeProjectId", activeProjectId, "24h");
         }
         Notices.index();

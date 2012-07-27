@@ -98,7 +98,7 @@ public class Notice extends Model implements CycleRecoverable {
 
     @Override
     public String toString() {
-        return error.toString();
+        return "["+error.toString()+"]";
     }
 
     public Object onCycleDetected(Context cntxt) {
