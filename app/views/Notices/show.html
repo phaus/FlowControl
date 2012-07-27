@@ -2,14 +2,14 @@
 <div class="hero-unit">
     <h2>Notice</h2>
     <dl class="dl-horizontal">
-        <dt>Created</dt>
-        <dd>${entity.created_at}</dd>
         <dt>Project</dt>
         <dd><a href="@{Projects.show(entity.project.id)}">${entity.project.name}</a></dd>
-        <dt>Api-Key</dt>
-        <dd>${entity.apiKey}</dd>
+        <dt>Error</dt>
+        <dd><a href="@{BacktraceErrors.show(entity.error.id)}">${entity.error}</a></dd>
         <dt>Environment</dt>
         <dd>${entity.environment}</dd>
+        <dt>Created</dt>
+        <dd>${entity.created_at}</dd>
         <dt>Notifier</dt>
         <dd>${entity.notifier}</dd>
     </dl>
@@ -29,7 +29,8 @@
     #{/form}
 </div>
 <div class="row">
-    <div class="span10">
+    <div class="span1"></div>
+    <div class="span11">
         #{if entity.request}
         <h3>Request</h3>
         <dl class="dl-horizontal">
@@ -43,17 +44,22 @@
             <dt>Action</dt>
             <dd>${entity.request.action}</dd>
             #{/if}
+        </dl>
+        <table class="varList table">
             #{varList list:entity.request.params, name:'Params' /}
             #{varList list:entity.request.session, name:'Session' /}
             #{varList list:entity.request.cgiData, name:'CGI-Data' /}
-        </dl>
+        </table>
         #{/if}
     </div>
 </div>
 <div class="row">
-    <h3>Error</h3>
-    <p>${entity.error}
-    <pre class="prettyprint linenums">
+    <div class="span1"></div>
+    <div class="span11">
+        <h3>Error</h3>
+        <p>${entity.error}
+        <pre class="prettyprint linenums">
 ${entity.error?.backtrace}
-    </pre>
+        </pre>
+    </div>
 </div>

@@ -60,6 +60,6 @@ public class ServerEnvironment extends Model {
         if (this.environmentName.isEmpty()) {
             return "";
         }
-        return this.environmentName + "(" + this.appVersion + ") @" + this.hostname + "/" + projectRoot;
+        return "[" + this.environmentName + "] (" + this.appVersion + ") @ " + this.hostname+" "+this.projectRoot;
     }
 }

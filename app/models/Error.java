@@ -47,7 +47,7 @@ public class Error extends Model {
                 + "AND p IN ("
                 + "SELECT ap FROM Account a INNER JOIN a.projects ap WHERE a = :account"
                 + ") GROUP BY e.id "
-                + "ORDER by count(n.id) ASC ").setParameter("account", currentAccount);
+                + "ORDER by count(n.id) DESC ").setParameter("account", currentAccount);
         return query.getResultList();
     }
 
