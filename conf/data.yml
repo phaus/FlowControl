@@ -11,7 +11,10 @@ ApiKey(apikey1):
 
 ApiKey(apikey2):
     apiKey: 780894b8-2ee6-4bd1-8a30-598b624edb5a
-    
+
+ApiKey(apikey3):
+    apiKey: ca110f8e-999e-481b-afdf-161de9e62130
+
 Project(example):
     name: Example
     url: http://www.example.com
@@ -21,7 +24,12 @@ Project(flowcontrol):
     name: FlowControl
     url: https://github.com/phaus/FlowControl
     apiKey: apikey2
-    
+
+Project(flowcontrol):
+    name: flow_control_test
+    url: https://github.com/mrreynolds/flow_control_test
+    apiKey: apikey3
+
 Account(user):
     uid: user
     email: user@example.com

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <error>
 #{if play.mode.name() == 'DEV'}
+	<request>${request.toString()}</request>
     <message>${exception.getLocalizedMessage()}</message>
         #{/if}
         #{else}

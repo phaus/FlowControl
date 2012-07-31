@@ -11,3 +11,5 @@ modules/*
 precompiled
 server.pid
 conf/ldap.properties
+
+repository/custom/api/dist/*

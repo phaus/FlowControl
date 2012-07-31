@@ -58,7 +58,7 @@ public class ApiPlugin extends PlayPlugin {
 
         if ("application/json".equals(contentType)) {
             return getJson(clazz, name);
-        } else if ("application/xml".equals(contentType)) {
+        } else if ("application/xml".equals(contentType) || "text/xml".equals(contentType)) {
             return getXml(clazz);
         }
 

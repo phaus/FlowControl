@@ -60,7 +60,9 @@ public class Notice extends Model implements CycleRecoverable {
             if (this.request != null) {
                 this.request.save();
             }
-            this.error = this.error.getErrorReference();
+            if(this.error != null) {
+                this.error = this.error.getErrorReference();
+            }
         }
     }
 
@@ -70,20 +72,24 @@ public class Notice extends Model implements CycleRecoverable {
     }
 
     public Notice(generated.Notice notice) {
-        this.version = notice.getVersion();
-        this.apiKey = notice.getApiKey();
-        if (notice.getNotifier() != null) {
-            this.notifier = Notifier.getOrCreate(notice.getNotifier());
-        }
-        if (notice.getError() != null) {
-            this.error = new Error(notice.getError());
-        }
-        if(notice.getRequest() != null){
-            this.request = new Request(notice.getRequest());
-        }
-        if(notice.getServerEnvironment() != null){
-            this.environment = ServerEnvironment.getOrCreate(notice.getServerEnvironment());
-            Logger.info("found: "+this.environment);
+        if(notice != null){
+            this.version = notice.getVersion();
+            this.apiKey = notice.getApiKey();
+            if (notice.getNotifier() != null) {
+                this.notifier = Notifier.getOrCreate(notice.getNotifier());
+            }
+            if (notice.getError() != null) {
+                this.error = new Error(notice.getError());
+            }
+            if(notice.getRequest() != null){
+                this.request = new Request(notice.getRequest());
+            }
+            if(notice.getServerEnvironment() != null){
+                this.environment = ServerEnvironment.getOrCreate(notice.getServerEnvironment());
+                Logger.info("found: "+this.environment);
+            }
+        } else {
+            Logger.error("generated.Notice notice is null!");
         }
 
     }

@@ -6,7 +6,8 @@
 
 # Home page
 GET     ${context}/?                                      Application.index
-POST    ${context}/notifier_api/v2/notices                Api.notices
+POST    ${context}/notifier_api/v2/notices/?              Api.notices
+GET 	${context}/verify								  Api.verify
 
 # Ignore favicon requests
 GET     ${context}/favicon.ico                            404
@@ -32,6 +33,7 @@ GET     ${context}/graphs/notices.svg                     Graphs.notices(format:
 *       ${context}/projects/{id}/key/add                  Projects.addApiKey
 
 GET     ${context}/project/{projectId}/errors/index       BacktraceErrors.projectIndex
+GET     ${context}/errors/show/{id}                   	  BacktraceErrors.show()
 GET     ${context}/errors/show/{id}.xml                   BacktraceErrors.show(format:'xml')
 *       ${context}/errors/{action}                        BacktraceErrors.{action}
 
