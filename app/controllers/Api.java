@@ -13,7 +13,6 @@ import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.Http.Header;
 import play.mvc.Http.Request;
-import static play.modules.api.RenderXml.*;
 
 public class Api extends Controller {
 
@@ -44,7 +43,7 @@ public class Api extends Controller {
             error("request not valid");
         } else {
             notice.save();
-            renderXML(noticeMessage);
+            renderText("Notice @"+notice.id+" "+notice.toString());
         }
     }
 

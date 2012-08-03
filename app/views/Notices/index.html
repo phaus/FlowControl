@@ -1,6 +1,6 @@
 #{extends 'main.html' /}
 <div class="row">
-    <div class="span10">
+    <div class="span9">
         <h1>#{if resolved == 2} Unresolved#{/if}#{elseif resolved == 1 } Resolved#{/elseif}#{else} All #{/else} Notices #{if project}<small>for Project ${project.name}</small>#{/if}</h1>
         <table class="entity notice table">
             <thead>
@@ -47,7 +47,7 @@
 
         </table>
     </div>
-    <div class="span2">
+    <div class="span3">
         <div class="well sidebar-nav">
             <ul class="nav nav-list">
                 <li class="nav-header">State
