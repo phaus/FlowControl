@@ -6,8 +6,6 @@
         <dd><a href="@{Projects.show(entity.project.id)}">${entity.project.name}</a></dd>
         <dt>Error</dt>
         <dd><a href="@{BacktraceErrors.show(entity.error.id)}">${entity.error}</a></dd>
-        <dt>Environment</dt>
-        <dd>${entity.environment}</dd>
         <dt>Created</dt>
         <dd>${entity.created_at}</dd>
         <dt>Notifier</dt>
@@ -30,6 +28,21 @@
 </div>
 <div class="row">
     <div class="span1"></div>
+    <div class="span11">
+        #{if entity.environment}
+        <h3>Environment</h3>
+        <dl class="dl-horizontal">
+            <dt>Host</dt>
+            <dd>${entity.environment?.hostname}</dd>
+            <dt>Root</dt>
+            <dd>${entity.environment?.projectRoot}</dd>
+            <dt>Name</dt>
+            <dd>${entity.environment?.environmentName}</dd>
+            <dt>Version</dt>
+            <dd>${entity.environment?.appVersion}</dd>
+        </dl>
+        #{/if}
+    </div>
     <div class="span11">
         #{if entity.request}
         <h3>Request</h3>
