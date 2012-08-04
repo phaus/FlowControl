@@ -16,26 +16,26 @@ import play.mvc.Http.Request;
 
 public class Api extends Controller {
 
-
     // TODO Refactore all the Secure/Application.java Stuff :-).
     @Before
-    public static void debugRequest(){
+    public static void debugRequest() {
         StringBuilder sb = new StringBuilder("\n");
         Header h;
         sb.append("url: ").append(request.url).append("\n");
         sb.append("host: ").append(request.host).append("\n");
-        if(request.secure){
+        if (request.secure) {
             sb.append("secure Request\n");
         }
-        for( String key : request.headers.keySet()){
+        for (String key : request.headers.keySet()) {
             h = request.headers.get(key);
             sb.append("\t").append(key).append(":").append(h.toString()).append("\n");
         }
-        Logger.debug("headers: "+sb.toString());
+        Logger.debug("headers: " + sb.toString());
     }
 
     public static void notices(generated.Notice noticeMessage) {
         Notice notice = new Notice(noticeMessage);
+        Logger.debug("i got: \n" + noticeMessage.toString() + " \n");
         if (!isContentXML(request)) {
             error("MIME Type not valid. Please use 'application/xml' ");
         } else if (!Validation.current().valid(noticeMessage).ok) {
@@ -43,7 +43,7 @@ public class Api extends Controller {
             error("request not valid");
         } else {
             notice.save();
-            renderText("Notice @"+notice.id+" "+notice.toString());
+            renderText("Notice @" + notice.id + " " + notice.toString());
         }
     }
 
@@ -57,7 +57,7 @@ public class Api extends Controller {
             if ("content-type".equals(key)) {
                 Header h = r.headers.get(key);
                 String contentType = h.value();
-                Logger.debug("content-type: "+contentType);
+                Logger.debug("content-type: " + contentType);
                 if (h != null && (contentType.startsWith("text/xml") || contentType.startsWith("application/xml"))) {
                     return true;
                 }
