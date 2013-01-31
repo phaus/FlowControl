@@ -4,9 +4,9 @@ import java.util.List;
 import models.ApiKey;
 import models.Notice;
 import models.Project;
-import play.i18n.Messages;
-import play.data.validation.Validation;
 import play.data.validation.Valid;
+import play.data.validation.Validation;
+import play.i18n.Messages;
 
 public class Projects extends Application {
 

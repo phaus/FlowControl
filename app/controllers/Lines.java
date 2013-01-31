@@ -2,10 +2,10 @@ package controllers;
 
 import java.util.List;
 import models.Line;
-import play.mvc.Controller;
-import play.i18n.Messages;
-import play.data.validation.Validation;
 import play.data.validation.Valid;
+import play.data.validation.Validation;
+import play.i18n.Messages;
+import play.mvc.Controller;
 
 public class Lines extends Controller {
     public static void index() {
@@ -34,7 +34,7 @@ public class Lines extends Controller {
     }
     
     public static void save(@Valid Line entity) {
-        if (validation.hasErrors()) {
+        if (Validation.hasErrors()) {
             flash.error(Messages.get("scaffold.validation"));
             render("@create", entity);
         }
@@ -44,7 +44,7 @@ public class Lines extends Controller {
     }
 
     public static void update(@Valid Line entity) {
-        if (validation.hasErrors()) {
+        if (Validation.hasErrors()) {
             flash.error(Messages.get("scaffold.validation"));
             render("@edit", entity);
         }

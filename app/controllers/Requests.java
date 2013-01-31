@@ -2,8 +2,9 @@ package controllers;
 
 import java.util.List;
 import models.Request;
-import play.i18n.Messages;
 import play.data.validation.Valid;
+import play.data.validation.Validation;
+import play.i18n.Messages;
 
 public class Requests extends Application {
 
@@ -33,7 +34,7 @@ public class Requests extends Application {
     }
 
     public static void save(@Valid Request entity) {
-        if (validation.hasErrors()) {
+        if (Validation.hasErrors()) {
             flash.error(Messages.get("scaffold.validation"));
             render("@create", entity);
         }
@@ -43,7 +44,7 @@ public class Requests extends Application {
     }
 
     public static void update(@Valid Request entity) {
-        if (validation.hasErrors()) {
+        if (Validation.hasErrors()) {
             flash.error(Messages.get("scaffold.validation"));
             render("@edit", entity);
         }

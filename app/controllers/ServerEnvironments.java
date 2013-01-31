@@ -2,10 +2,9 @@ package controllers;
 
 import java.util.List;
 import models.ServerEnvironment;
-import play.mvc.Controller;
-import play.i18n.Messages;
-import play.data.validation.Validation;
 import play.data.validation.Valid;
+import play.data.validation.Validation;
+import play.i18n.Messages;
 
 public class ServerEnvironments extends Application {
     public static void index() {
@@ -44,7 +43,7 @@ public class ServerEnvironments extends Application {
     }
 
     public static void update(@Valid ServerEnvironment entity) {
-        if (validation.hasErrors()) {
+        if (Validation.hasErrors()) {
             flash.error(Messages.get("scaffold.validation"));
             render("@edit", entity);
         }

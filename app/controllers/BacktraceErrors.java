@@ -1,13 +1,14 @@
 package controllers;
 
-import models.Account;
 import java.util.List;
+import models.Account;
 import models.Backtrace;
 import models.Error;
 import models.Project;
 import play.cache.Cache;
-import play.i18n.Messages;
 import play.data.validation.Valid;
+import play.data.validation.Validation;
+import play.i18n.Messages;
 import static play.modules.api.RenderXml.*;
 
 public class BacktraceErrors extends Application {
@@ -60,7 +61,7 @@ public class BacktraceErrors extends Application {
     }
 
     public static void save(@Valid Error entity) {
-        if (validation.hasErrors()) {
+        if (Validation.hasErrors()) {
             flash.error(Messages.get("scaffold.validation"));
             render("@create", entity);
         }
@@ -70,7 +71,7 @@ public class BacktraceErrors extends Application {
     }
 
     public static void update(@Valid Error entity) {
-        if (validation.hasErrors()) {
+        if (Validation.hasErrors()) {
             flash.error(Messages.get("scaffold.validation"));
             render("@edit", entity);
         }

@@ -6,8 +6,9 @@ import java.util.Map;
 import models.Notice;
 import models.Project;
 import play.cache.Cache;
-import play.i18n.Messages;
 import play.data.validation.Valid;
+import play.data.validation.Validation;
+import play.i18n.Messages;
 
 public class Notices extends Application {
 
@@ -48,7 +49,7 @@ public class Notices extends Application {
     }
 
     public static void save(@Valid Notice entity) {
-        if (validation.hasErrors()) {
+        if (Validation.hasErrors()) {
             flash.error(Messages.get("scaffold.validation"));
             render("@create", entity);
         }
@@ -58,7 +59,7 @@ public class Notices extends Application {
     }
 
     public static void update(@Valid Notice entity) {
-        if (validation.hasErrors()) {
+        if (Validation.hasErrors()) {
             flash.error(Messages.get("scaffold.validation"));
             render("@edit", entity);
         }

@@ -2,10 +2,10 @@ package controllers;
 
 import java.util.List;
 import models.Account;
-import play.mvc.Controller;
-import play.i18n.Messages;
-import play.data.validation.Validation;
 import play.data.validation.Valid;
+import play.data.validation.Validation;
+import play.i18n.Messages;
+import play.mvc.Controller;
 
 public class Accounts extends Controller {
 
@@ -31,21 +31,21 @@ public class Accounts extends Controller {
     public static void delete(java.lang.Long id) {
         Account entity = Account.findById(id);
         entity.delete();
-        Accounts.index();
+        index();
     }
 
     public static void save(@Valid Account entity) {
-        if (validation.hasErrors()) {
+        if (Validation.hasErrors()) {
             flash.error(Messages.get("scaffold.validation"));
             render("@create", entity);
         }
         entity.save();
         flash.success(Messages.get("scaffold.created", "Account"));
-        Accounts.index();
+        index();
     }
 
     public static void update(@Valid Account entity) {
-        if (validation.hasErrors()) {
+        if (Validation.hasErrors()) {
             flash.error(Messages.get("scaffold.validation"));
             render("@edit", entity);
         }
@@ -54,6 +54,6 @@ public class Accounts extends Controller {
 
         entity.save();
         flash.success(Messages.get("scaffold.updated", "Account"));
-        Accounts.index();
+        index();
     }
 }

@@ -2,10 +2,9 @@ package controllers;
 
 import java.util.List;
 import models.Notifier;
-import play.mvc.Controller;
-import play.i18n.Messages;
-import play.data.validation.Validation;
 import play.data.validation.Valid;
+import play.data.validation.Validation;
+import play.i18n.Messages;
 
 public class Notifiers extends Application {
     public static void index() {
@@ -34,7 +33,7 @@ public class Notifiers extends Application {
     }
     
     public static void save(@Valid Notifier entity) {
-        if (validation.hasErrors()) {
+        if (Validation.hasErrors()) {
             flash.error(Messages.get("scaffold.validation"));
             render("@create", entity);
         }
@@ -44,7 +43,7 @@ public class Notifiers extends Application {
     }
 
     public static void update(@Valid Notifier entity) {
-        if (validation.hasErrors()) {
+        if (Validation.hasErrors()) {
             flash.error(Messages.get("scaffold.validation"));
             render("@edit", entity);
         }
