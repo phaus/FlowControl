@@ -20,24 +20,25 @@ public class Application extends Controller {
     public static String defaultUser = Play.configuration.getProperty("flowcontrol.default_user");
     public static String[] admins = Play.configuration.getProperty("flowcontrol.admins").split(",");
     public static Account currentAccount;
-
-    @Before
-    public static void debugRequest(){
+    public final static boolean CONNECTION_SECURE = Boolean.parseBoolean(Play.configuration.getProperty("application.connection.secure", "false"));
+    @Before(priority = 1)
+    public static void debugRequest() {
+        request.secure = CONNECTION_SECURE;
         StringBuilder sb = new StringBuilder("\n");
         Header h;
         sb.append("url: ").append(request.url).append("\n");
         sb.append("host: ").append(request.host).append("\n");
-        if(request.secure){
+        if (request.secure) {
             sb.append("secure Request\n");
         }
-        for( String key : request.headers.keySet()){
+        for (String key : request.headers.keySet()) {
             h = request.headers.get(key);
             sb.append("\t").append(key).append(":").append(h.toString()).append("\n");
         }
-        Logger.debug("headers: "+sb.toString());
+        Logger.debug("headers: " + sb.toString());
     }
 
-    @Before
+    @Before(priority = 2)
     public static void login() {
         if (request.user == null) {
             unauthorized("FlowControl");
