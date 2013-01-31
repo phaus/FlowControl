@@ -5,9 +5,8 @@ import models.Line;
 import play.data.validation.Valid;
 import play.data.validation.Validation;
 import play.i18n.Messages;
-import play.mvc.Controller;
 
-public class Lines extends Controller {
+public class Lines extends Application {
     public static void index() {
         List<Line> entities = models.Line.all().fetch();
         render(entities);

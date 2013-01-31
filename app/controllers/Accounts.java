@@ -5,9 +5,8 @@ import models.Account;
 import play.data.validation.Valid;
 import play.data.validation.Validation;
 import play.i18n.Messages;
-import play.mvc.Controller;
 
-public class Accounts extends Controller {
+public class Accounts extends Application {
 
     public static void index() {
         List<Account> entities = models.Account.all().fetch();
