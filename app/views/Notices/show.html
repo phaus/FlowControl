@@ -4,11 +4,13 @@
     <dl class="dl-horizontal">
         <dt>Project</dt>
         <dd><a href="@{Projects.show(entity.project.id)}">${entity.project.name}</a></dd>
-        <dt>Error</dt>
-        <dd><a href="@{BacktraceErrors.show(entity.error.id)}">${entity.error}</a></dd>
         <dt>Created</dt>
         <dd>${entity.created_at}</dd>
         <dt>Notifier</dt>
+        <dd>${entity.notifier}</dd>
+        <dt>Error</dt>
+        <dd><a href="@{BacktraceErrors.show(entity.error.id)}">${entity.error}</a></dd>
+        <dt>Message</dt>
         <dd>${entity.notifier}</dd>
     </dl>
 

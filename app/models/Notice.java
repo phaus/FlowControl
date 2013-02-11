@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import models.Error;
 import play.Logger;
 import play.data.binding.As;
 import play.data.validation.Check;
