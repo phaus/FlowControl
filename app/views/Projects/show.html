@@ -7,11 +7,14 @@
                 <dl class="dl-horizontal">
                     <dt>Homepage</dt><dd><a target="_new" href="${project.url}">${project.url}</a></dd>
                     <dt>Created</dt><dd>${project.created_at}</dd>
-                    <dt>Api-Key</dt>
+                    <dt>Endpoint</dt><dd><pre>@@{Api.notices()}</pre></dd>
+                    <dt>Api-Key                       
+                    #{if project.apiKey}
+                    <a class="btn" href="@{Projects.removeApiKey(project.id)}" onclick="if (!confirm('Are you sure you want to delete this record?\n* all Noticfication for this key will be deleted,\n* all Projects will be disconnected!')) return false;"><i class="icon-minus-sign"></i></a>
+                    #{/if}</dt>
                     <dd>
                         #{if project.apiKey}
-                        ${project.apiKey}
-                        <a class="btn" href="@{Projects.removeApiKey(project.id)}" onclick="if (!confirm('Are you sure you want to delete this record?\n* all Noticfication for this key will be deleted,\n* all Projects will be disconnected!')) return false;"><i class="icon-minus-sign"></i></a>
+                        <pre>${project.apiKey}</pre>
                         #{/if}
                         #{else}
                         <a class="btn" href="@{Projects.addApiKey(project.id)}"><i class="icon-plus-sign"></i></a>

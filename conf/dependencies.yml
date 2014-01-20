@@ -1,10 +1,11 @@
 # Application dependencies
 
 require:
-    - play 1.2.5
+    - play 1.2.7
     - play -> scaffold 0.1
     - custom -> api 0.1
     - custom -> ldap 0.1
+    - org.rrd4j -> rrd4j 2.2
 repositories:
     - playCustomModules:
         type:       local

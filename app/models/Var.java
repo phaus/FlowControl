@@ -34,7 +34,12 @@ public class Var extends Model {
         this.key = var.getKey();
         this.setContent(var.getContent());
     }
-
+    
+    public Var(generated.Var var, String content) {
+        this.key = var.getKey();
+        this.content = content.trim();
+    }
+    
     public List<Serializable> getContent() {
         List<Serializable> contentList = new ArrayList();
         contentList.addAll(Arrays.asList(content.split("####")));

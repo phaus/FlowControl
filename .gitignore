@@ -13,3 +13,8 @@ server.pid
 conf/ldap.properties
 
 repository/custom/api/dist/*
+lib/rrd4j-2.2.jar
+
+lib/mongo-java-driver-2.11.1.jar
+
+lib/je-4.0.92.jar

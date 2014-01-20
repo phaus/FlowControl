@@ -69,7 +69,7 @@ public class Projects extends Application {
             entity.apiKey = key;
             entity.save();
         }
-        index();
+        show(id);
     }
 
     public static void removeApiKey(java.lang.Long id) {
@@ -80,6 +80,6 @@ public class Projects extends Application {
             entity.save();
             key.delete();
         }
-        index();
+        show(id);
     }
 }
