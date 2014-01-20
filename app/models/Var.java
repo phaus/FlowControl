@@ -50,7 +50,7 @@ public class Var extends Model {
         List<String> contentList = new ArrayList<String>();
         for(Serializable o : getContent()){
             if(!o.toString().isEmpty()){
-                          contentList.add((String) o);
+                contentList.add((String) o);
             }
 
         }
@@ -78,7 +78,11 @@ public class Var extends Model {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(key).append(" ").append(getContent().toString());
+        sb.append(key).append(" ");
+        List<Serializable> contentList = getContent();
+        for(int i = 0; i < contentList.size(); i++){
+            sb.append(contentList.get(i)).append("\n");
+        }
         return sb.toString();
     }
 }
